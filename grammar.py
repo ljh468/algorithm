@@ -210,10 +210,28 @@ print(a)
 # 튜플은 변경이 불가능하므로 리스트와 다르게 키값으로 사용될 수 있음
 # 리스트보다 메모리를 효율적으로 사용해야 할 때
 
-array = [1, 2, 3, 4, 5]
-def func():
-    array = [3, 4, 5]
-    array.append(6)
-func()
-print(array)
+print("#######################################")
+# 사전자료형(Dictionary)
+# 사전자료형은 키(key)와 값(value)의 쌍을 데이터로 가지는 자료형
+# 변경불가능한 자료형을 key로 사용
+# 해시테이블을 이용하므로 데이터조회 및 수정에 있어서 O(1)의 시간에 처리할수 있음
+data = dict() # 초기화
+data['사과'] = 'Apple'
+data['바나나'] = 'Banana'
+data['코코넛'] = 'Coconut'
+print(data) # -> {'사과': 'Apple', '바나나': 'Banana', '코코넛': 'Coconut'}
 
+# 키 데이터를 뽑아서 리스트로 반환
+Key_list = data.keys()
+# 값데이터
+value_list = data.values()
+# 각 키에 따른 값을 하나씩 출력
+for key in Key_list:
+    print(data[key]) # ->Apple Banana Coconut
+
+b = {'홍길동':97, '이순신':98}
+print(b)
+key_list = b.keys()
+print(key_list) # -> dict_keys(['홍길동', '이순신']) -객체로 변환
+key_list = list(b.keys())
+print(key_list) # -> ['홍길동', '이순신'] -리스트자료형으로 형변환
