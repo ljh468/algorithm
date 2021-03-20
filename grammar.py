@@ -236,4 +236,4 @@ print(key_list) # -> dict_keys(['홍길동', '이순신']) -객체로 변환
 key_list = list(b.keys())
 print(key_list) # -> ['홍길동', '이순신'] -리스트자료형으로 형변환
 
-##
+####
