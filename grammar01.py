@@ -254,8 +254,8 @@ data = {1,1,2,3,4,4,5}
 print(data)
 
 # 집합자료형의 연산
-# 합집합 : A or B , A | b
-# 교집합 : A and B , A & B
+# 합집합 : A or B , A | b는 안됨
+# 교집합 : A and B , A & B 안됨
 # 차집합 : A - B
 
 data = set([1,2,3])
