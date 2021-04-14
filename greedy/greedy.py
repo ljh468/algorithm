@@ -112,10 +112,4 @@ for i in data:
         count = 0
     else:
         continue
-<<<<<<< HEAD
 print(result)
-
-
-=======
-print(result)
->>>>>>> 527329aafbef6fd3e06c1d9fea0d5a663143c3cf
