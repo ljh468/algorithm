@@ -31,10 +31,10 @@ for i in range(2, num+1):
 
 print(add1)
 print("time :", time.time() - start)
+
 ## 소수 판별 (함수 이용 코드)
 # num = int(input())
 add2 = []
-start = time.time()
 def sosu(n):
     if n <= 2:
         return add2.append(n)
@@ -49,16 +49,13 @@ for i in range(2, num+1):
     sosu(i)
 
 print(add2)
-print("time :", time.time() - start)
+
 ## 에라토스테니스의 체
 add3 = [True]*(num+1)
-start = time.time()
 m = int(num**0.5)
 
 for i in range(2,m+1):
-    if add3[i] ==True:
+    if add3[i] == True:
         for j in range(i+i, num+1,i):
             add3[j]=False
 print([i for i in range(2,num+1) if add3[i]==True])
-
-print("time :", time.time() - start)
