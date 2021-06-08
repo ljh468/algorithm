@@ -37,3 +37,21 @@ queue.popleft()
 print(queue) # 먼저 들어온 순서대로 출력 -> deque([3,7,1,4])
 queue.reverse() # 역순으로 바꾸기
 print(queue) # 나중에 들어온 원소부터 출력 -> deque([4,1,7,3])
+
+
+
+
+queue2 = deque()
+queue2.append(1)
+queue2.append(0)
+queue2.append(1)
+
+print(queue2[0])
+print(queue2[1])
+print(queue2[2])
+
+
+
+
+
+
