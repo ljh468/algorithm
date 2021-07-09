@@ -5,10 +5,8 @@ def recursive_function0():
     print('재귀 함수를 호출합니다.')
     recursive_function0()
 
-
 # recursive_function()
 # 파이썬은 1000번의 재귀가 돌면 maximum recursion depth 오류뜸
-
 
 # 재귀함수 종료조건
 # 문제풀이시 재귀함수의 종료 조건을 반드시 명시해야함
