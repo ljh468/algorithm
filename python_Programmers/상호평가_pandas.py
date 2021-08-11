@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 def solution(scores):
@@ -27,9 +28,9 @@ def solution(scores):
 
         if cnt > 1:
             continue;
-        # 유일한 최대값이거나, 유일한 최소값이면, 0으로 채움
+        # 유일한 최대값이거나, 유일한 최소값이면, None으로 채움
         elif score[index] == max(avg_list) or score[index] == min(avg_list):
-            score[index] = 0
+            score[index] = None
     
     # 0으로 채워진 scores 리스트를 다시 데이터프레임으로 변환
     df = pd.DataFrame(scores)
@@ -37,12 +38,14 @@ def solution(scores):
     for col in range(0 ,len(df.columns)):
         # 컬럼 1개씩 확인
         avg = df.iloc[:, col]
-        # 마스킹으로 0 제거
-        avg = avg[avg != 0]
+        # 마스킹으로 None 제거
+        avg = avg.dropna()
+
+        print(avg)
         # 평균을 구하고 함수판별식으로 학점 확인
         answer += (grade(sum(avg)/avg.size))
     return answer
 
 
-scores = [[10, 20, 30, 40],[40, 30, 20, 10],[20, 30, 20, 20],[49, 36, 22, 40]]
+scores = [[100,90,98,88,65],[50,45,99,85,77],[47,88,95,80,67],[61,57,100,80,65],[24,90,94,75,65]]
 print(solution(scores))
