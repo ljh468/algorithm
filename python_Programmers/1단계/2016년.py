@@ -1,3 +1,4 @@
+import datetime
 from datetime import date
 
 a = 5
@@ -29,7 +30,7 @@ print(solution2(a, b))
 # weekday() : 정수로 요일을 반환합니다. 월요일은 0 ~ 일요일은 6입니다.
 
 def solution3(a, b):
-    date = 'MON TUE WED THU FRI SAT SUN'.split()
-    return date[datetime.datetime(2016, a, b).weekday()]
+    day = 'MON TUE WED THU FRI SAT SUN'.split()
+    return day[datetime.datetime(2016, a, b).weekday()]
 
 print(solution3(a, b))
