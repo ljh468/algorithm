@@ -12,7 +12,10 @@ def solution(N, stages):
             num -= count
         else:
             result[stage] = 0
-
+    print('result : ', result)
+    # 특정 key값을 기준으로 내림차순 정렬 ( key 파라미터는 함수여야 함 )
+    # sorted에 result를 넣으면 lamda x에 keys값만 들어감, value값을 꺼내기위해 result[x]
+    # result[x]는 각 key에 대응되는 value를 뜻함
     return sorted(result, key=lambda x : result[x], reverse=True)
 
 N = 5
