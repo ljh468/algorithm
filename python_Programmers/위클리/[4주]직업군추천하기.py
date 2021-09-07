@@ -1,3 +1,4 @@
+# 내 풀이
 def solution(table, languages, preference):
     answer = []
     lang = []
@@ -19,18 +20,29 @@ def solution(table, languages, preference):
         answer.append(score)
         lang_list = list(zip(lang, answer))
         score = 0
-    print(lang_list)
     lang_list.sort()
-    for i in lang_list:
-        if answer.index(max(answer)) == i[1]:
-            print(i[0])
-            return i[0]
-    return 0
 
+    for i, k in lang_list:
+        if k == max(answer):
+            return i
 
-table = ["SI JAVA JAVASCRIPT SQL PYTHON C#", "CONTENTS JAVASCRIPT JAVA PYTHON SQL C++",
-         "HARDWARE C C++ PYTHON JAVA JAVASCRIPT", "PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP",
+# 모범 풀이
+def solution2(table, languages, preference):
+    score = {}
+    for t in table:
+        for lang, pref in zip(languages, preference):
+            if lang in t.split():
+                score[t.split()[0]] = score.get(t.split()[0], 0) + (6 - t.split().index(lang)) * pref
+    return sorted(score.items(), key=lambda item : [-item[1], item[0]])[0][0]
+                                                    # 두번째 인자 기준으로 내림차순, 첫번째 인자 기준으로 오름차순
+                                                    # 큰점수부터 내림차순 -> 사전순으로 오름차순
+
+print('###########################################################################')
+table = ["SI JAVA JAVASCRIPT SQL PYTHON C#",
+         "CONTENTS JAVASCRIPT JAVA PYTHON SQL C++",
+         "HARDWARE C C++ PYTHON JAVA JAVASCRIPT",
+         "PORTAL JAVA JAVASCRIPT PYTHON KOTLIN PHP",
          "GAME C++ C# JAVASCRIPT C JAVA"]
 language = ["JAVA", "JAVASCRIPT"]
 preference = [7, 5]
-print(solution(table, language, preference))
+print(solution2(table, language, preference))
