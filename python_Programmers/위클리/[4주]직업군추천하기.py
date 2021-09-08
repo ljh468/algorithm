@@ -33,6 +33,7 @@ def solution2(table, languages, preference):
         for lang, pref in zip(languages, preference):
             if lang in t.split():
                 score[t.split()[0]] = score.get(t.split()[0], 0) + (6 - t.split().index(lang)) * pref
+    print(score)
     return sorted(score.items(), key=lambda item : [-item[1], item[0]])[0][0]
                                                     # 두번째 인자 기준으로 내림차순, 첫번째 인자 기준으로 오름차순
                                                     # 큰점수부터 내림차순 -> 사전순으로 오름차순
