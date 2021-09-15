@@ -1,3 +1,4 @@
+# 내 풀이
 def solution(s):
     length = []
     result = ""
@@ -24,11 +25,10 @@ def solution(s):
         result = ""
     return min(length)
 
+
 # 모범 풀이
 def compress(text, tok_len):
-    print('tok_len : ', tok_len)
-    words = [text[i:i+tok_len] for i in range(0, len(text), tok_len)]
-    print(words)
+    words = [text[i:i + tok_len] for i in range(0, len(text), tok_len)]
     res = []
     cur_word = words[0]
     cur_cnt = 1
@@ -39,12 +39,26 @@ def compress(text, tok_len):
             res.append([cur_word, cur_cnt])
             cur_word = b
             cur_cnt = 1
-    print('res : ', res)
     return sum(len(word) + (len(str(cnt)) if cnt > 1 else 0) for word, cnt in res)
 
+
 def solution2(text):
-    return min(compress(text, tok_len) for tok_len in list(range(1, int(len(text)/2) + 1)) + [len(text)])
+    return min(compress(text, tok_len) for tok_len in list(range(1, int(len(text) / 2) + 1)) + [len(text)])
+
 
 s = 'aabbaccc'
-print(solution(s))
+
+
+# print(solution(s))
 # print(solution2(s))
+
+
+def solution3(s):
+    result = []
+    for tok_len in range(1, int(len(s)/2) + 1):
+        result.append(compress(s, tok_len))
+    return min(result)
+
+
+s = "abcabcdede"
+print(solution3(s))
