@@ -25,7 +25,6 @@ def solution(s):
         result = ""
     return min(length)
 
-
 # 모범 풀이
 def compress(text, tok_len):
     words = [text[i:i + tok_len] for i in range(0, len(text), tok_len)]
@@ -47,8 +46,6 @@ def solution2(text):
 
 
 s = 'aabbaccc'
-
-
 # print(solution(s))
 # print(solution2(s))
 
@@ -57,6 +54,7 @@ def solution3(s):
     result = []
     for tok_len in range(1, int(len(s)/2) + 1):
         result.append(compress(s, tok_len))
+    print(result)
     return min(result)
 
 
