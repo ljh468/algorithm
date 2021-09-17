@@ -21,7 +21,6 @@ def solution(enter, leave):
     return [len(set(i)) for i in answer][1:]
 
 # 모범 풀이
-
 def solution2(enter, leave):
     answer = [0] * len(enter)
 
