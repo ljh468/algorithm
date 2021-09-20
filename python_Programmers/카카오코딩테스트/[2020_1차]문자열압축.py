@@ -39,8 +39,6 @@ def compress(text, tok_len):
             cur_word = b
             cur_cnt = 1
     return sum(len(word) + (len(str(cnt)) if cnt > 1 else 0) for word, cnt in res)
-
-
 def solution2(text):
     return min(compress(text, tok_len) for tok_len in list(range(1, int(len(text) / 2) + 1)) + [len(text)])
 
