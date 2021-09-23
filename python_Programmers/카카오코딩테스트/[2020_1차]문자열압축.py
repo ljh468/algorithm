@@ -43,7 +43,7 @@ def solution2(text):
     return min(compress(text, tok_len) for tok_len in list(range(1, int(len(text) / 2) + 1)) + [len(text)])
 
 
-s = 'aabbaccc'
+s = 'aabbacccc'
 # print(solution(s))
 # print(solution2(s))
 
