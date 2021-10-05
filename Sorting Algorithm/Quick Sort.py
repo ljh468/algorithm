@@ -26,14 +26,13 @@ print('####################################################')
 # 예제 01) 퀵 정렬 소스코드 예제
 array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
 
-
 def quick_sort(array, start, end):
     if start >= end:  # 원소가 1개인 경우 종료
         return
     pivot = start  # 피벗값은 첫번째 원소의 인덱스
     left = start + 1  # 왼쪽 원소의 인덱스
     right = end  # 오른쪾 원소의 인덱스
-    while left <= right:  # 엇길릴때 까지 반복
+    while left <= right:  # 엇길릴때 까지 반복 (left의 인덱스 보다 right의 인덱스가 크면 반복)
         # 피벗보다 큰 데이터를 찾을때까지 반복
         while left <= end and array[left] <= array[pivot]:
             left += 1
@@ -53,6 +52,25 @@ def quick_sort(array, start, end):
 
 quick_sort(array, 0, len(array) - 1)
 print(array)
+print('####################################################')
+
+# 퀵 정렬 소스코드 : 파이썬의 장점을 살린 방식
+array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
+
+def quick_sort2(array):
+    # 리스트가 하나 이하의 원소만을 담고 있다면 종료
+    if len(array) <= 1:
+        return array
+    pivot = array[0]  # 피벗은 첫 번째 원소
+    tail = array[1:]  # 피벗을 제외한 리스트
+
+    left_side = [x for x in tail if x <= pivot]  # 분할된 왼쪽 부분
+    right_side = [x for x in tail if x > pivot]  # 분할된 오른쪽 부분
+    # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬을 수행하고, 전체 리스트 반환
+    return quick_sort2(left_side) + [pivot] + quick_sort2(right_side)
+print(quick_sort2(array))
+
+
 # 퀵 정렬이 빠른이유 : 직관적인 이해
 # 이상적인 경우 분할이 절반씩 일어난다면 전체 연산횟수로 O(NlogN)를 기대할 수 있습니다.
 # 너비 X 높이 = N * logN = NlogN
@@ -63,19 +81,3 @@ print(array)
 #     1 || 2, 3, 4, 5, 6, 7, 8, 9 분할
 #     2 || 3, 4, 5, 6, 7, 8, 9 분할
 # 표준 정렬 라이브러리는 O(NlogN)을 보장함
-
-# 예제 01) 퀵 정렬 소스코드 예제
-array = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
-
-for i in range(len(array)):
-    min_index = i  # 가장 작은 원소의 인덱스
-    for j in range(i + 1, len(array)):
-        if array[j] < array[min_index]:
-            min_index = j  # 가장 작은 원소의 인덱스를 구함
-    array[i], array[min_index] = array[min_index], array[i]  # swap
-print(array)
-
-# 반복1 :  i = 0부터 n-1까지
-# 반복2 :  j = i+1 부터 n-1까지
-# 선택정렬은 N번 만큼 가장 작은 수를 찾아서 맨앞으로 보내야 함
-# (N^2+N-2)/2이므로 O(N^2)의 시간복잡도를 가짐
