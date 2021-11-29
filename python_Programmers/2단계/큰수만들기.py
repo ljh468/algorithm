@@ -35,6 +35,7 @@ def solution2(number, k):
     answer = "".join(st)
     return answer
 
+# 내풀이
 def sol(number, k):
     answer = ""
     stack = []
