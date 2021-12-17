@@ -40,7 +40,9 @@ def solution(users, n):
         elif appand == 1:  # 새로운 유저가 매칭이 되었다면
             cnt.pop(matchcntidx)  # 매칭집합의 허용티어점수가 들어있는 cnt 제거
 
-
+    print('tears : ', tears)
+    print('cnt : ', cnt)
+    print('matchCnt : ', matchCnt)
     return matchCnt  # 결과값 : 매칭이 완료된 집합의 갯수
 
 users = [0, 5, 11, 7, 13, 22, 14, 19, 25, 22]
