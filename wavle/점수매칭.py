@@ -46,5 +46,5 @@ def solution(users, n):
     return matchCnt  # 결과값 : 매칭이 완료된 집합의 갯수
 
 users = [0, 5, 11, 7, 13, 22, 14, 19, 25, 22]
-n = 2
+n = 3
 print(solution(users, n))
