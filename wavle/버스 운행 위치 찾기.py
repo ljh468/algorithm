@@ -81,7 +81,7 @@ print(bus_list)
 # 현재시간
 current_time = currentTime()
 # 입력 시간
-current_time2 = ['0920', 'weekday']
+current_time2 = ['1010', 'weekday']
 
 # 버스운행표 확인 (입력 버스번호, 현재시간과 요일)
 print(solution(bus_list, current_time2))

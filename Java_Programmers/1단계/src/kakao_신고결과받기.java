@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class 신고결과받기 {
+public class kakao_신고결과받기 {
     /********************************************************************************************************
      * 내 풀이
      ********************************************************************************************************/
@@ -77,7 +77,7 @@ public class 신고결과받기 {
         String[] report = {"muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"};
         int k = 2;
 
-//        solution(id_list, report, k);
+        solution(id_list, report, k);
         solution2(id_list, report, k);
     }
 }
