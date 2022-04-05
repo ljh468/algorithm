@@ -5,58 +5,74 @@ public class kakao_신고결과받기 {
      * 내 풀이
      ********************************************************************************************************/
     public static int[] solution(String[] id_list, String[] report, int k) {
-            int[] answer = new int[id_list.length];
-            Map<String, HashSet<String>> map = new HashMap<>();
-            Map<String, Integer> index = new HashMap<>();
+        // 유저가 받을 결과 메일수 를 저장할 배열
+        int[] answer = new int[id_list.length];
 
-            // map초기화
-            for (int i = 0; i < id_list.length; i++) {
-                String name = id_list[i];
-                map.put(name, new HashSet<>());
-                index.put(name, i);
-            }
-            // 신고한 사람찾기
-            for (String s : report) {
-                String[] str = s.split(" ");
-                map.get(str[1]).add(str[0]);
-            }
-            // 이용정지 메일발송
-            for (int i = 0; i < id_list.length; i++) {
-                HashSet<String> send = map.get(id_list[i]);
-                if (send.size() >= k) {
-                    for (String name : send) {
-                        answer[index.get(name)]++;
-                    }
+        // id당 신고한 인원을 저장할 배열
+        Map<String, HashSet<String>> map = new HashMap<>();
+
+        // map은 순서가 없기때문에 id의 인덱스를 설정
+        Map<String, Integer> id_Index = new HashMap<>();
+
+        // map초기화
+        for (int i = 0; i < id_list.length; i++) {
+            String name = id_list[i];
+            map.put(name, new HashSet<>());
+            id_Index.put(name, i);
+        }
+
+        // 신고한사람 저장
+        for (String s : report) {
+            String[] str = s.split(" ");
+            map.get(str[1]).add(str[0]);
+        }
+
+        // 이용정지 메일발송
+        for (int i = 0; i < id_list.length; i++) {
+            // id 키값으로 나를 신고한 인원 send에 저장
+            HashSet<String> send = map.get(id_list[i]);
+
+            // 신고한 인원이 k 이상이면 메일 보내기
+            if (send.size() >= k) {
+                for (String name : send) {
+                    answer[id_Index.get(name)]++;
                 }
             }
-            return answer;
         }
+        return answer;
+    }
 
     /********************************************************************************************************
      * 객체지향 풀이
      ********************************************************************************************************/
     public static int[] solution2(String[] id_list, String[] report, int k) {
+        // 유저가 받을 결과 메일수 를 저장할 배열
         int[] answer = new int[id_list.length];
+        // 유저의 정보를 저장할 유저객체 리스트
         ArrayList<User> users = new ArrayList<>();
-        // <이름>
+        // <이름 리스트>
         HashMap<String,Integer> suspendedList = new HashMap<>();
-        //  <이름, 해당 이름의 User 클래스 idx>
+        //  <해당 이름의 User의 인덱스>
         HashMap<String,Integer> idIdx = new HashMap<String,Integer>();
+        
+        // 초기화
         int idx = 0;
-
         for(String name : id_list) {
             idIdx.put(name,idx++);
             users.add(new User(name));
         }
+        // 내가 신고한인원, 나를 신고한인원 저장
         for(String re : report){
             String[] str = re.split(" ");
-            users.get( idIdx.get(str[0])).reportList.add(str[1]);
-            users.get( idIdx.get(str[1])).reportedList.add(str[0]);
+            users.get(idIdx.get(str[0])).reportList.add(str[1]);
+            users.get(idIdx.get(str[1])).reportedList.add(str[0]);
         }
+        // 나를 신고한 인원이 k이상이면 이용정지
         for(User user : users){
             if(user.reportedList.size() >= k)
                 suspendedList.put(user.name,1);
         }
+        // 이용정지 메일발송 (내가 신고한사람이 이용정지 인원이라면 메일발송)
         for(User user : users){
             for(String nameReport : user.reportList){
                 if(suspendedList.get(nameReport) != null){
@@ -77,7 +93,7 @@ public class kakao_신고결과받기 {
         String[] report = {"muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"};
         int k = 2;
 
-        solution(id_list, report, k);
+//        solution(id_list, report, k);
         solution2(id_list, report, k);
     }
 }
@@ -87,8 +103,8 @@ public class kakao_신고결과받기 {
  */
 class User{
     String name; // 이름
-    HashSet<String> reportList; // 내가 신고한 사람
-    HashSet<String> reportedList; // 나를 신고한 사람
+    HashSet<String> reportList; // 내가 신고한 사람 <중복불가 HashSet>
+    HashSet<String> reportedList; // 나를 신고한 사람 <중복불가 HashSet>
     public User(String name){
         this.name = name;
         reportList = new HashSet<>();
