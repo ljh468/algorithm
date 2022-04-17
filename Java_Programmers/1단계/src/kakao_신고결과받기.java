@@ -1,10 +1,14 @@
-import java.util.*;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class kakao_신고결과받기 {
     /********************************************************************************************************
      * 내 풀이
      ********************************************************************************************************/
-    public static int[] solution(String[] id_list, String[] report, int k) {
+    public int[] solution(String[] id_list, String[] report, int k) {
         // 유저가 받을 결과 메일수 를 저장할 배열
         int[] answer = new int[id_list.length];
 
@@ -43,9 +47,9 @@ public class kakao_신고결과받기 {
     }
 
     /********************************************************************************************************
-     * 객체지향 풀이
+     * Hash를 활용한 객체지향 풀이
      ********************************************************************************************************/
-    public static int[] solution2(String[] id_list, String[] report, int k) {
+    public int[] solution2(String[] id_list, String[] report, int k) {
         // 유저가 받을 결과 메일수 를 저장할 배열
         int[] answer = new int[id_list.length];
         // 유저의 정보를 저장할 유저객체 리스트
@@ -86,15 +90,52 @@ public class kakao_신고결과받기 {
         return answer;
     }
     /********************************************************************************************************
+     * 모범 풀이
+     ********************************************************************************************************/
+    public int[] solution3(String[] id_list, String[] report, int k){
+        int[] answer = new int[id_list.length];
+        // 1. 중복제거
+        HashSet<String> reportSet = new HashSet<>();
+        for(String rep : report){
+            reportSet.add(rep);
+        }
+        // 2. notifyListHash 만들기
+        HashMap<String, ArrayList<String>> notifyListHash = new HashMap<>();
+        for(String rep : reportSet){
+            String[] re = rep.split(" ");
+            String reporter = re[0];
+            String reportee = re[1];
+
+            ArrayList<String> reporterList = notifyListHash.getOrDefault(reportee, null);
+            if(reporterList == null) reporterList = new ArrayList<>();
+
+            reporterList.add(reporter);
+            notifyListHash.put(reportee, reporterList);
+        }
+        // 3. notifyListHash를 기반으로 reporterHash 만들기
+        HashMap<String, Integer> reporterHash = new HashMap();
+        for(ArrayList<String> notifyList : notifyListHash.values()){
+            if(notifyList.size() >= k)
+                for(String reporter : notifyList)
+                    reporterHash.put(reporter, reporterHash.getOrDefault(reporter, 0) + 1);
+        }
+        // 4. reporterHash를 기반으로 answer 배열을 채운다.
+        for(int i = 0; i < id_list.length; i++){
+            answer[i] = reporterHash.getOrDefault(id_list[i], 0);
+        }
+        return answer;
+    }
+    /********************************************************************************************************
      * main
      ********************************************************************************************************/
     public static void main(String[] args) {
         String[] id_list = {"muzi", "frodo", "apeach", "neo"};
         String[] report = {"muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"};
         int k = 2;
-
-//        solution(id_list, report, k);
-        solution2(id_list, report, k);
+        kakao_신고결과받기 sol = new kakao_신고결과받기();
+//        sol.solution(id_list, report, k);
+//        sol.solution2(id_list, report, k);
+        sol.solution3(id_list, report, k);
     }
 }
 

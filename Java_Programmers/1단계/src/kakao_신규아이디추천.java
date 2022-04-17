@@ -1,6 +1,3 @@
-import java.util.Locale;
-import java.util.regex.Pattern;
-
 public class kakao_신규아이디추천 {
     /********************************************************************************************************
      * 내 풀이

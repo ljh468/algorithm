@@ -5,7 +5,7 @@ public class kakao_숫자문자열과영단어 {
     /********************************************************************************************************
      * 내 풀이
      ********************************************************************************************************/
-    public static int solution(String s) {
+    public int solution(String s) {
         HashMap<Integer, String> numbers = new HashMap<>();
                 numbers.put(0, "zero");
                 numbers.put(1, "one");
@@ -27,7 +27,7 @@ public class kakao_숫자문자열과영단어 {
     /********************************************************************************************************
      * 배열 하나만 이용
      ********************************************************************************************************/
-    public static int solution2(String s) {
+    public int solution2(String s) {
         String[] strArr = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         for(int i = 0; i < strArr.length; i++) {
             s = s.replaceAll(strArr[i], Integer.toString(i));
@@ -37,9 +37,9 @@ public class kakao_숫자문자열과영단어 {
     /********************************************************************************************************
      * main
      ********************************************************************************************************/
-    public static void main(String[] args) {
+    public void main(String[] args) {
+        kakao_숫자문자열과영단어 sol = new kakao_숫자문자열과영단어();
         String s = "one4seveneight";
-        int solution = solution(s);
-        System.out.println("solution = " + solution);
+        System.out.println(sol.solution(s));
     }
 }

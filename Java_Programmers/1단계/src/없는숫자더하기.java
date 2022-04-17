@@ -1,10 +1,8 @@
-import java.util.Arrays;
-
 public class 없는숫자더하기 {
     /********************************************************************************************************
      * 내 풀이
      ********************************************************************************************************/
-    public static int solution(int[] numbers) {
+    public int solution(int[] numbers) {
         int answer = 45;
         for(int num : numbers){
             answer -= num;
@@ -15,7 +13,8 @@ public class 없는숫자더하기 {
      * main
      ********************************************************************************************************/
     public static void main(String[] args) {
+        없는숫자더하기 sol = new 없는숫자더하기();
         int[] numbers = {5,8,4,0,6,7,9};
-        System.out.println("solution(numbers) : " + solution(numbers));
+        System.out.println("solution(numbers) : " + sol.solution(numbers));
     }
 }
