@@ -29,11 +29,12 @@ public class kakao_실패율 {
             }
             endIn -= nextIn;
         }
+        System.out.println("failMap = " + failMap);
         List<Map.Entry<Integer, Double>> entryList = new LinkedList<>(failMap.entrySet());
         entryList.sort(new Comparator<Map.Entry<Integer, Double>>() {
             @Override
             public int compare(Map.Entry<Integer, Double> o1, Map.Entry<Integer, Double> o2) {
-                return o2.getValue().compareTo(o1.getValue());
+                    return o2.getValue().compareTo(o1.getValue());
             }
         });
         int cnt = 0;
@@ -69,7 +70,6 @@ public class kakao_실패율 {
                 total -= users[i];
             }
         }
-        
         // 실패율에 따른 정렬
         Collections.sort(fails, comp);
         for (int i = 0; i < n; i++) {
@@ -97,7 +97,9 @@ public class kakao_실패율 {
                 return 1;
             } else if (a.rate > b.rate) {
                 return -1;
-            } else{
+            }
+            // 실패율이 같다면 stage가 작은게 앞으로
+            else{
                 if(a.stage > b.stage)
                     return 1;
                 else if(a.stage < b.stage)
@@ -114,11 +116,7 @@ public class kakao_실패율 {
         int[] stages = {2, 1, 2, 6, 2, 4, 3, 3}; // 이용하는 사용자가 멈춰있는 스테이지 번호
         int[] solution = sol.solution(n, stages);
         int[] solution2 = sol.solution2(n, stages);
-        for (int i : solution) {
-            System.out.println("i = " + i);
-        }
-        for (int j : solution2) {
-            System.out.println("j= " + j);
-        }
+        System.out.println(Arrays.toString(solution));
+        System.out.println(Arrays.toString(solution2));
     }
 }

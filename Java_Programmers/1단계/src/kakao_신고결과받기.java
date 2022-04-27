@@ -103,8 +103,8 @@ public class kakao_신고결과받기 {
         HashMap<String, ArrayList<String>> notifyListHash = new HashMap<>();
         for(String rep : reportSet){
             String[] re = rep.split(" ");
-            String reporter = re[0];
-            String reportee = re[1];
+            String reporter = re[0]; // 신고한사람
+            String reportee = re[1]; // 신고당한사람
 
             ArrayList<String> reporterList = notifyListHash.getOrDefault(reportee, null);
             if(reporterList == null) reporterList = new ArrayList<>();
@@ -113,6 +113,7 @@ public class kakao_신고결과받기 {
             notifyListHash.put(reportee, reporterList);
         }
         // 3. notifyListHash를 기반으로 reporterHash 만들기
+        // 신고한사람에게 보내야하는 메일 수 저장
         HashMap<String, Integer> reporterHash = new HashMap();
         for(ArrayList<String> notifyList : notifyListHash.values()){
             if(notifyList.size() >= k)

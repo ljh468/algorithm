@@ -13,9 +13,7 @@ public class 체육복 {
             } else {
                 lostSet.add(l);
             }
-
         }
-
         // 2. Reserve에서 하나씩 꺼내서 lostSet에 줄 수 있는 사람을 찾아서 준다.
         for(int re : resSet)
             // 앞자리 학생이 필요한지 확인

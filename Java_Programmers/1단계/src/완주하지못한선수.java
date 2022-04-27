@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -22,7 +21,6 @@ public class 완주하지못한선수 {
                 break;
             }
         }
-
         // 3. 여기까지 왔다면, 마지막 주자가 완주하지 못한 선수다.
         return participant[i];
     }
@@ -44,7 +42,7 @@ public class 완주하지못한선수 {
         for (String player : completion) {
             map.put(player, map.get(player) - 1);
         }
-        // 3. Value가 0이 아닌 마지막 주자를 찾느다.
+        // 3. Value가 0이 아닌 마지막 주자를 찾는다.
         for (String key : map.keySet()) {
             if (map.get(key) != 0) {
                 answer = key;
