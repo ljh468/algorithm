@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class kakao_크레인인형뽑기게임_연습 {
     public int solution(int[][] board, int[] moves){
         int answer = 0;

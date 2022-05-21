@@ -2,8 +2,24 @@ import java.util.Arrays;
 
 public class dev_로또의최고순위와최저순위_연습 {
     public int[] solution(int[] lottos, int[] win_nums) {
-        int[] answer = new int[]{};
-        return answer;
+        int hidden = 0;
+        int result = 0;
+        for(int lotto : lottos){
+            if(lotto == 0){
+                hidden += 1;
+                continue;
+            }
+            for(int win_num : win_nums){
+                if(win_num == lotto){
+                    result += 1;
+                    break;
+                }
+            }
+        }
+        return new int[]{rank(result+hidden), rank(result)};
+    }
+    public int rank(int answer_count){
+        return (answer_count <= 1) ? 6 : 7 - answer_count;
     }
     /********************************************************************************************************
      * main

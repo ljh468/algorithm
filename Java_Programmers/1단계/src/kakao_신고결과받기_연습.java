@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class kakao_신고결과받기_연습 {
     public int[] solution(String[] id_list, String[] report, int k) {
@@ -21,5 +18,6 @@ public class kakao_신고결과받기_연습 {
         String[] report = {"muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"};
         int k = 2;
         kakao_신고결과받기_연습 sol = new kakao_신고결과받기_연습();
+        System.out.println(Arrays.toString(sol.solution(id_list, report, k)));
     }
 }
