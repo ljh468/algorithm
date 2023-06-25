@@ -8,29 +8,37 @@ import java.util.Scanner;
  * teachermode e -> 1 0 1 2 1 0 1 2 2 1 0
  */
 public class _10_가장짧은문자거리 {
-  public int[] solution1(String s, char t) {
-    int[] answer = new int[s.length()];
-    int p = 1000;
-    for (int i = 0; i < s.length(); i++) {
-      if (s.charAt(i) == t) {
-        p = 0;
-        answer[i] = p;
-      } else {
-        p++;
-        answer[i] = p;
+
+  public int[] solution1(String str, char target) {
+    // 거리를 담을 char 배열 생성
+    int[] address = new int[str.length()];
+
+    // 문자열 길이는 100을 넘지 않기 때문에 거리를 확인할 변수 지정
+    int position = 1000;
+
+    // 왼쪽 부터 확인
+    for (int i = 0; i < str.length(); i++) {
+      if (str.charAt(i) == target) {
+        position = 0;
+        address[i] = position;
+      } else{
+        position++;
+        address[i] = position;
       }
     }
-    p = 1000;
-    for (int i = s.length() - 1; i >= 0; i--) {
-      if (s.charAt(i) == t) {
-        p = 0;
+    // 오른쪽 확인
+    position = 1000;
+    for (int j = str.length()-1; j >= 0; j--) {
+      if (str.charAt(j) == target) {
+        position = 0;
       } else {
-        p++;
-        answer[i] = Math.min(answer[i], p);
+        position++;
+        address[j] = Math.min(address[j], position);
       }
     }
-    return answer;
+    return address;
   }
+
   public static void main(String[] args) {
     _10_가장짧은문자거리 t = new _10_가장짧은문자거리();
     Scanner sc = new Scanner(System.in);
