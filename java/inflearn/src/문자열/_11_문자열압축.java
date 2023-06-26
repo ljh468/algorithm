@@ -9,7 +9,6 @@ import java.util.Scanner;
  * KSTTTSEEKFKKKDJJGG -> KST3SE2KFK3DJ2G2
  */
 public class _11_문자열압축 {
-
   public String solution1(String str) {
 
     // 문자의 갯수를 셀 변수

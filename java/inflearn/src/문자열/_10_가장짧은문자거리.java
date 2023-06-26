@@ -8,7 +8,6 @@ import java.util.Scanner;
  * teachermode e -> 1 0 1 2 1 0 1 2 2 1 0
  */
 public class _10_가장짧은문자거리 {
-
   public int[] solution1(String str, char target) {
     // 거리를 담을 char 배열 생성
     int[] address = new int[str.length()];
