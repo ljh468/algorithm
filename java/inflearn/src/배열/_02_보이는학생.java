@@ -5,6 +5,13 @@ import java.util.Scanner;
 public class _02_보이는학생 {
   public int solution1(int n, int[] ints) {
     int answer = 0;
+    int height = 0;
+    for (int i = 0; i < n; i++) {
+      if (ints[i] > height) {
+        answer++;
+        height = ints[i];
+      }
+    }
     return answer;
   }
 
