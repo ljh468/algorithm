@@ -24,11 +24,12 @@ public class _11_임시반장정하기 {
     int max = Integer.MIN_VALUE;
 
     // 본인 학생번호
-    for (int i = 1; i <= n; i++) {
+    for (int i = 0; i < n; i++) {
       int count = 0;
-      // 다른 학생번호
-      for (int j = 1; j <= n; j++) {
-        for (int k = 1; k <= 5; k++) {
+      // 비교 학생번호
+      for (int j = 0; j < n; j++) {
+        // 학년
+        for (int k = 0; k < 5; k++) {
           if (arr[i][k] == arr[j][k]) {
             count++;
             break;
@@ -37,7 +38,7 @@ public class _11_임시반장정하기 {
       }
       if (count > max) {
         max = count;
-        answer = i;
+        answer = i+1;
       }
     }
     return answer;
@@ -47,10 +48,10 @@ public class _11_임시반장정하기 {
     _11_임시반장정하기 t = new _11_임시반장정하기();
     Scanner sc = new Scanner(System.in);
     int n = sc.nextInt();
-    int[][] arr = new int[n+1][6];
+    int[][] arr = new int[n][5];
 
-    for (int i = 1; i <= n; i++) {
-      for (int j = 1; j <= 5; j++) {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < 5; j++) {
         arr[i][j] =sc.nextInt();
       }
     }
