@@ -47,12 +47,6 @@ public class _04_연속부분수열 {
     return answer;
   }
 
-  public int solution2(int n, int m, int[] arr) {
-    int answer = 0;
-
-    return answer;
-  }
-
   public static void main(String[] args) {
     _04_연속부분수열 t = new _04_연속부분수열();
     Scanner sc = new Scanner(System.in);
