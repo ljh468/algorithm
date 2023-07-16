@@ -1,6 +1,5 @@
 package 투포인터;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -10,15 +9,14 @@ import java.util.Scanner;
  * 4+5+6=15
  * 1+2+3+4+5=15
  * 와 같이 총 3가지의 경우가 존재한다.
- *
+ * <p>
  * 입력
  * 15
- *
+ * <p>
  * 출력
  * 3
- *
  */
-public class _05_연속된_자연수의_합 {
+public class _05_01_연속된_자연수의_합 {
 
   public int solution1(int n) {
     int answer = 0;
@@ -26,7 +24,7 @@ public class _05_연속된_자연수의_합 {
     int sum = 0;
     int lt = 1;
 
-    for (int rt = 1; rt <= n/2 + 1; rt++) {
+    for (int rt = 1; rt <= n / 2 + 1; rt++) {
       sum += rt;
       if (sum == n) {
         answer++;
@@ -74,7 +72,7 @@ public class _05_연속된_자연수의_합 {
   }
 
   public static void main(String[] args) {
-    _05_연속된_자연수의_합 t = new _05_연속된_자연수의_합();
+    _05_01_연속된_자연수의_합 t = new _05_01_연속된_자연수의_합();
     Scanner sc = new Scanner(System.in);
     int n = sc.nextInt();
     System.out.println(t.solution1(n));
