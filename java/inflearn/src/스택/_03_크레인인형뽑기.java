@@ -16,17 +16,24 @@ public class _03_크레인인형뽑기 {
   public int solution1(int[][] board, int[] moves) {
     int answer = 0;
     Stack<Integer> stack = new Stack<>();
+    // 1. 크레인 위치에 해당하는 인형을 찾는다. (밑으로 행을 이동하면서 인형 찾기)
     for (int pos : moves) {
       for (int i = 0; i < board.length; i++) {
+        // 2. 비어 있지 않은 인형 캐치 (배열의 index는 0부터 시작하기 때문에 -1)
         if (board[i][pos - 1] != 0) {
+          // 인형 꺼냄
           int tmp = board[i][pos - 1];
-          board[i][pos-1] = 0;
+          // board의 인형은 비어줌
+          board[i][pos - 1] = 0;
+          // 바구니에 겹치는게 있으면 모두 꺼냄
           if (!stack.isEmpty() && (stack.peek() == tmp)) {
             stack.pop();
             answer += 2;
           } else {
+            // 아니면 바구니에 인형 담기
             stack.push(tmp);
           }
+          // 다음 위치로 이동
           break;
         }
       }
@@ -49,6 +56,6 @@ public class _03_크레인인형뽑기 {
     for (int i = 0; i < m; i++) {
       moves[i] = sc.nextInt();
     }
-    System.out.println(t.solution1(board, moves));
+    System.out.println("1번 : " + t.solution1(board, moves));
   }
 }
