@@ -58,7 +58,7 @@ public class _08_응급실 {
         }
       }
 
-      // 4. 위험도가 높은 환자가 없으면 진료
+      // 4. 위험도가 높은 환자가 없으면 진료 가능
       if (tmp != null) {
         answer++;
         if (tmp.id == m) {
