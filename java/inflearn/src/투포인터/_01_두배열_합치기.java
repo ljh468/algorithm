@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
  * 입력
  * 3
  * 1 3 5
+ *
  * 5
  * 2 3 6 7 9
  * <p>
@@ -20,7 +21,10 @@ public class _01_두배열_합치기 {
 
   public List<Integer> solution1(int n, int m, int[] arr1, int[] arr2) {
     List<Integer> answer = new ArrayList<>();
-    int p1 = 0, p2 = 0;
+    int p1 = 0;
+    int p2 = 0;
+
+    // 두 배열을 비교하여 작은 수를 합칠 배열에 추가
     while (p1 < n && p2 < m) {
       if (arr1[p1] < arr2[p2]) {
         answer.add(arr1[p1++]);
@@ -28,11 +32,15 @@ public class _01_두배열_합치기 {
         answer.add(arr2[p2++]);
       }
     }
+
+    // 남은 배열 비우기
     while (p1 < n) {
       answer.add(arr1[p1++]);
     }
+
     while (p2 < m) {
-      answer.add(arr2[p2++]);
+      answer.add(arr2[p2]);
+      p2++;
     }
     return answer;
   }

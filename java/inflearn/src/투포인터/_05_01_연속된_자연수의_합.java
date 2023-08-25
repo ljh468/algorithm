@@ -20,10 +20,10 @@ public class _05_01_연속된_자연수의_합 {
 
   public int solution1(int n) {
     int answer = 0;
-
     int sum = 0;
     int lt = 1;
 
+    // n을 2로 나눈 몫 + 1 만큼만 확인 (나눈 몫 + 1 * 2는 n을 무조건 넘기 때문에)
     for (int rt = 1; rt <= n / 2 + 1; rt++) {
       sum += rt;
       if (sum == n) {

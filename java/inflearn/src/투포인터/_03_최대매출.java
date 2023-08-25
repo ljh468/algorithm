@@ -20,17 +20,20 @@ import java.util.Scanner;
 public class _03_최대매출 {
 
   public int solution1(int n, int k, int[] arr) {
-    int answer = 0;
     // 슬라이딩 윈도우 초기값 세팅
     int sum = 0;
     for (int i = 0; i < k; i++) {
       sum += arr[i];
     }
+
+    // 최대 매출액 초기화
+    int answer = 0;
     answer = sum;
 
+    // k 위치부터 한칸씩 이동하면서 연속된 k만큼의 배열중 가장 큰 매출액 찾기
     for (int i = k; i < n; i++) {
       sum += arr[i] - arr[i - k];
-      answer = Math.max(answer, sum);
+      answer = Math.max(sum, answer);
     }
     return answer;
   }

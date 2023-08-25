@@ -20,7 +20,6 @@ public class _02_공통원소_구하기 {
 
   public List<Integer> solution1(int n, int m, int[] a, int[] b) {
     List<Integer> answer = new ArrayList<>();
-
     // a, b 배열 오름차순 정렬
     Arrays.sort(a);
     Arrays.sort(b);

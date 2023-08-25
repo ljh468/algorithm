@@ -8,25 +8,29 @@ import java.util.Scanner;
  * 만약 N=8, M=6이고 수열이 다음과 같다면
  * 1 2 1 3 1 1 1 2
  * 합이 6이 되는 연속부분수열은 {2, 1, 3}, {1, 3, 1, 1}, {3, 1, 1, 1}로 총 3가지입니다.
- *
+ * <p>
  * 입력
  * 8 6
  * 1 2 1 3 1 1 1 2
- *
+ * <p>
  * 출력
  * 3
- *
  */
 public class _04_연속부분수열 {
 
+  /**
+   * @param n 수열의 개수
+   * @param m 목표 숫자
+   * @param arr 부분수열의 합
+   * @return 부분수열의 합이 목표숫자가 되는 개수
+   */
   public int solution1(int n, int m, int[] arr) {
-    int answer = 0;
     int sum = 0;
+    int answer = 0;
     int lt = 0;
 
     // lt ==> rt 까지의 합이 작으면 rt의 위치는 다음으로 이동
     for (int rt = 0; rt < n; rt++) {
-
       sum += arr[rt];
       // 값이 같으면 경우의 수 추가
       if (sum == m) {
@@ -42,7 +46,6 @@ public class _04_연속부분수열 {
           answer++;
         }
       }
-
     }
     return answer;
   }
