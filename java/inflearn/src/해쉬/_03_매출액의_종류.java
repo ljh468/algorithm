@@ -29,32 +29,34 @@ import java.util.Scanner;
  */
 public class _03_매출액의_종류 {
 
-  // 해쉬맵과 투포인터를 이용해서 풀이
+  // 해쉬맵과 슬라이딩 윈도우를 활용해서 풀이
   public ArrayList<Integer> solution1(int n, int k, int[] arr) {
     ArrayList<Integer> answer = new ArrayList<>();
-
-    // 1. (K-2)개 까지 Map에 저장
     Map<Integer, Integer> map = new HashMap<>();
+
+    // 슬라이딩 윈도우 k-1개 만큼 초기값 세팅
     for (int i = 0; i < k - 1; i++) {
       map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
     }
 
-    // 2. 투포인터, 슬라이딩 윈도우를 하면서 rt를 이동
+    // 슬라이딩 윈도우를 k칸으로 만들기위해 rt를 이동
     int lt = 0;
     for (int rt = k - 1; rt < n; rt++) {
-      // rt 이동, map에 추가
+      // rt를 이동하여 슬라이딩 윈도우 완성
       map.put(arr[rt], map.getOrDefault(arr[rt], 0) + 1);
       answer.add(map.size());
 
-      // lt 이동, map에 제거
+      // 슬라이딩 윈도우를 이동하기 위해 lt를 제거
       map.put(arr[lt], map.get(arr[lt]) - 1);
 
       // 만약 map의 vlaue가 0이면 key값 제거
       if (map.get(arr[lt]) == 0) {
         map.remove(arr[lt]);
       }
+      // lt 이동
       lt++;
     }
+
     return answer;
   }
 

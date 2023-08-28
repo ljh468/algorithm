@@ -29,11 +29,11 @@ public class _04_모든_아나그램_찾기 {
 
     // 2. 투포인터를 이용해서 검증할 map을 생성
     Map<Character, Integer> map2 = new HashMap<>();
-    char[] arr = s.toCharArray();
+    int dist = s.toCharArray().length;
     int lt = 0;
 
     // 3. rt 이동
-    for (int rt = 0; rt < arr.length; rt++) {
+    for (int rt = 0; rt < dist; rt++) {
       map2.put(s.charAt(rt), map2.getOrDefault(s.charAt(rt), 0) + 1);
 
       // 슬라이딩 윈도우가 완성되면, 아나그램인지 확인
@@ -56,11 +56,48 @@ public class _04_모든_아나그램_찾기 {
     return answer;
   }
 
+  public int solution2(String str1, String str2) {
+    int answer = 0;
+
+    Map<Character, Integer> map1 = new HashMap<>();
+    Map<Character, Integer> map2 = new HashMap<>();
+
+    // 비교할 T 문자열 해쉬맵에 저장
+    for (char x : str2.toCharArray()) {
+      map1.put(x, map1.getOrDefault(x, 0) + 1);
+    }
+
+    // S 문자열 슬라이딩 윈도우 초기값 세팅
+    int dist = str2.length() - 1;
+    for (int i = 0; i < dist; i++) {
+      map2.put(str1.charAt(i), map2.getOrDefault(str1.charAt(i), 0) + 1);
+    }
+    // rt 이동
+    int lt = 0;
+    for (int rt = dist; rt < str1.length(); rt++) {
+      map2.put(str1.charAt(rt), map2.getOrDefault(str1.charAt(rt), 0) + 1);
+      // 슬라이딩 윈도우가 완성되면, 아나그램인지 확인
+      if (map1.equals(map2)) {
+        answer++;
+      }
+
+      // lt 이동
+      map2.put(str1.charAt(lt), map2.get(str1.charAt(lt)) - 1);
+
+      if (map2.get(str1.charAt(lt)) == 0) {
+        map2.remove(str1.charAt(lt));
+      }
+      lt++;
+    }
+    return answer;
+  }
+
   public static void main(String[] args) {
     _04_모든_아나그램_찾기 t = new _04_모든_아나그램_찾기();
     Scanner sc = new Scanner(System.in);
     String S = sc.next();
     String T = sc.next();
     System.out.println(t.solution1(S, T));
+    System.out.println(t.solution2(S, T));
   }
 }

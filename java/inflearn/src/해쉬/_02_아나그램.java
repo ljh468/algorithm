@@ -11,31 +11,36 @@ import java.util.Scanner;
  * 길이가 같은 두 개의 단어가 주어지면 두 단어가 아나그램인지 판별하는 프로그램을 작성
  * 아나그램 판별시 대소문자가 구분됩니다.
  * 두 단어가 아나그램이면 “YES"를 출력하고, 아니면 ”NO"를 출력
- *
+ * <p>
  * 입력
  * AbaAeCe
  * baeeACA
- *
+ * <p>
  * 출력
  * YES
- *
  */
 public class _02_아나그램 {
 
   public String solution1(String str1, String str2) {
     String answer = "YES";
     Map<Character, Integer> map = new HashMap<>();
-    for (char x : str1.toCharArray()) {
-      map.put(x, map.getOrDefault(x, 0) + 1);
+
+    // 첫번째 문자열 해쉬맵에 저장
+    for (char ch : str1.toCharArray()) {
+      map.put(ch, map.getOrDefault(ch, 0) + 1);
     }
 
-    for (char x : str2.toCharArray()) {
-      if (!map.containsKey(x) || (map.get(x) == 0)) {
+    // 비교할 두번째 문자열을 해쉬맵과 비교
+    for (char ch : str2.toCharArray()) {
+      if (!map.containsKey(ch) || (map.get(ch) == 0)) {
         return "NO";
       } else {
-        map.put(x, map.get(x) - 1);
+        map.put(ch, map.get(ch) - 1);
       }
     }
+
+
+
     return answer;
   }
 

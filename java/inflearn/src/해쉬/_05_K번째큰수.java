@@ -25,12 +25,11 @@ public class _05_K번째큰수 {
     // 2. 3중 for문으로 모든 조합의 수를 구해서 TreeSet에 저장
     for (int i = 0; i < n - 2; i++) {
       for (int j = i + 1; j < n - 1; j++) {
-        for (int y = j + 1; y < n; y++) {
-          treeSet.add(arr[i] + arr[j] + arr[y]);
+        for (int l = j + 1; l < n; l++) {
+          treeSet.add(arr[i] + arr[j] + arr[l]);
         }
       }
     }
-    
     // set.remove() - 제거
     System.out.println("set.remove(0) = " + treeSet.remove(0));
     // set.size() - 개수 확인
@@ -40,7 +39,7 @@ public class _05_K번째큰수 {
     // set.last() - 가장 밑에 있는 값
     System.out.println("treeSet.last() = " + treeSet.last());
 
-    // 3. K번째 수 출력
+    // 3. K번째 큰 수 출력
     int cnt = 0;
     for (int x : treeSet) {
       cnt++;
