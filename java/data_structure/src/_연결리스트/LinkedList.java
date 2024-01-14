@@ -2,8 +2,10 @@ package _연결리스트;
 
 public class LinkedList {
 
+  // 연결리스트의 시작 노드
   private Node head;
 
+  // 총 저장된 노드의 수
   private int count;
 
   public LinkedList() {
@@ -11,7 +13,7 @@ public class LinkedList {
     this.count = 0;
   }
 
-  // 1. 모든 데이터 출력
+  // 1. 모든 데이터 출력 printAll();
   public void printAll() {
     Node currentNode = this.head;
     String text = "[";
@@ -27,20 +29,18 @@ public class LinkedList {
     System.out.println("linkedList: " + text);
   }
 
-  // 2. 모든 데이터 제거
+  // 2. 모든 데이터 제거 clear();
   public void clear() {
     this.head = null;
     this.count = 0;
   }
 
-  // 3. 인덱스 삽입
+  // 3. 인덱스 삽입 insertAt(index, data);
   public void insertAt(int index, int data) {
     if (index > this.count || index < 0) {
       throw new IllegalArgumentException("추가할 범위를 넘어갔습니다.");
     }
-
     Node newNode = new Node(data);
-
     if (index == 0) {
       newNode.setNext(head);
       this.head = newNode;
@@ -53,48 +53,46 @@ public class LinkedList {
       newNode.setNext(currentNode.getNext());
       currentNode.setNext(newNode);
     }
-
-    this.count++;
+    count++;
   }
 
-  // 4. 마지막 삽입
+  // 4. 마지막 삽입 insertLast(data);
   public void insertLast(int data) {
     insertAt(this.count, data);
   }
 
-  // 5. 인덱스 삭제
+  // 5. 인덱스 삭제 deleteAt(index);
   public Node deleteAt(int index) {
     if (index >= this.count || index < 0) {
       throw new IllegalArgumentException("제거할 범위를 넘었습니다.");
     }
 
     Node currentNode = this.head;
-    Node deletedNode = null;
+    Node deleteNode = null;
     if (index == 0) {
-      deletedNode = this.head;
+      deleteNode = currentNode;
       this.head = currentNode.getNext();
     } else {
       for (int i = 0; i < index - 1; i++) {
         currentNode = currentNode.getNext();
       }
-      deletedNode = currentNode.getNext();
-      currentNode.setNext(deletedNode.getNext());
+      deleteNode = currentNode.getNext();
+      currentNode.setNext(deleteNode.getNext());
     }
     this.count--;
-    return deletedNode;
+    return deleteNode;
   }
 
-  // 6. 마지막 삭제
+  // 6. 마지막 삭제 deleteLast();
   public Node deleteLast() {
-    return deleteAt(count - 1);
+    return deleteAt(this.count - 1);
   }
 
-  // 7. 인덱스 읽기
+  // 7. 인덱스 읽기 getNodeAt(index);
   public Node getNodeAt(int index) {
     if (index >= this.count || index < 0) {
       throw new IllegalArgumentException("읽을 수 없는 인덱스입니다.");
     }
-
     Node currentNode = this.head;
     for (int i = 0; i < index; i++) {
       currentNode = currentNode.getNext();
