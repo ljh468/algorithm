@@ -41,6 +41,7 @@ public class DoublyLinkedList {
   // 2. clear()
   public void clear() {
     this.head = null;
+    this.tail = null;
     this.count = 0;
   }
 
