@@ -1,47 +1,42 @@
 package _스택;
 
+import _연결리스트.LinkedList;
 import _연결리스트.Node;
 
-public class Stack {
+public class Stack_LinkedList {
 
-  private int size;
+  private final LinkedList linkedList;
 
-  private Node head;
-
-  public Stack() {
-    this.size = 0;
-    this.head = null;
+  public Stack_LinkedList() {
+    linkedList = new LinkedList();
   }
 
   public void push(int data) {
-    Node newNode = new Node(data);
-    if (this.head != null) {
-      newNode.setNext(head);
-    }
-    this.head = newNode;
-    size++;
+    linkedList.insertAt(0, data);
   }
 
   public Node pop() {
-    if (head != null) {
-      Node popNode = this.head;
-      size--;
-      this.head = this.head.getNext();
-      return popNode;
+    try {
+      return linkedList.deleteAt(0);
+    } catch (Exception exception) {
+      return null;
     }
-    return null;
   }
 
   public Node peek() {
-    return this.head;
+    try {
+      return linkedList.getNodeAt(0);
+    } catch (Exception exception) {
+      return null;
+    }
   }
 
   public boolean isEmpty() {
-    return size == 0;
+    return linkedList.getCount() == 0;
   }
 
   public static void main(String[] args) {
-    Stack stack = new Stack();
+    Stack_LinkedList stack = new Stack_LinkedList();
     System.out.println("===== 1, 2, 3, 4를 순서대로 스택에 push =====");
     stack.push(1);
     stack.push(2);

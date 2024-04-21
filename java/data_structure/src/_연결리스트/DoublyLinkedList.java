@@ -1,14 +1,25 @@
 package _연결리스트;
 
-public class LinkedList {
+public class DoublyLinkedList {
 
   private Node head;
 
+  private Node tail;
+
   private int count;
 
-  public LinkedList() {
+  public DoublyLinkedList() {
     this.head = null;
+    this.tail = null;
     this.count = 0;
+  }
+
+  public Node getHead() {
+    return head;
+  }
+
+  public Node getTail() {
+    return tail;
   }
 
   // 1. printAll()
@@ -39,18 +50,41 @@ public class LinkedList {
       throw new IllegalArgumentException("추가할 범위를 넘어갔습니다.");
     }
     Node newNode = new Node(data);
+    // head에 데이터 삽입
     if (index == 0) {
       newNode.setNext(this.head);
+      if (this.head != null) {
+        this.head.setPrev(newNode);
+      }
       this.head = newNode;
-    } else {
+    }
+    // tail에 데이터 삽입
+    else if (index == this.count) {
+      newNode.setNext(null);
+      newNode.setPrev(this.tail);
+      this.tail.setNext(newNode);
+    }
+
+    // 중간에 데이터 삽입
+    else {
       Node currentNode = this.head;
+      // 1. 넣을 인덱스의 바로 전 노드까지 이동
       for (int i = 0; i < index - 1; i++) {
         currentNode = currentNode.getNext();
       }
+      // 2. 새로운 노드 다음 노드에 현재 노드의 다음 노드를 연결
       newNode.setNext(currentNode.getNext());
+      // 3. 새로운 노드 이전 노드에 현재 노드를 연결
+      newNode.setPrev(currentNode);
+      // 4. 현재 노드의 다음 노드에 새로운 노드를 연결
       currentNode.setNext(newNode);
+      // 5. 새로운 노드 다음 노드의 이전 노드에 새로운 노드를 연결
+      newNode.getNext().setPrev(newNode);
     }
-    count++;
+    if (newNode.getNext() == null) {
+      this.tail = newNode;
+    }
+    this.count++;
   }
 
   // 4. insertLast(data)
@@ -66,18 +100,48 @@ public class LinkedList {
 
     Node currentNode = this.head;
     Node deleteNode = null;
+    // head에 있는 데이터 제거
     if (index == 0) {
       deleteNode = currentNode;
+      // 데이터가 1개 남은경우
+      if (this.head.getNext() == null) {
+        this.head = null;
+        this.tail = null;
+      }
+      // 데이터가 여러개 남은경우
+      else {
+        this.head = this.head.getNext();
+        this.head.setPrev(null);
+      }
+      this.count--;
       this.head = currentNode.getNext();
-    } else {
+      return deleteNode;
+    }
+
+    // tail에 있는 데이터 제거
+    else if (index == this.count - 1) {
+      deleteNode = this.tail;
+      // 1. tail의 이전 노드의 다음노드에 null을 연결
+      this.tail.getPrev().setNext(null);
+      // 2. tail의 이전 노드를 tail로 변경
+      this.tail = this.tail.getPrev();
+      this.count--;
+      return deleteNode;
+    }
+
+    // 중간의 데이터 제거
+    else {
+      // 1. 제거할 노드 인덱스의 바로 전 노드까지 이동
       for (int i = 0; i < index - 1; i++) {
         currentNode = currentNode.getNext();
       }
       deleteNode = currentNode.getNext();
-      currentNode.setNext(deleteNode.getNext());
+      currentNode.setNext(currentNode.getNext().getNext());
+      currentNode.getNext().setPrev(currentNode);
+      this.count--;
+      return deleteNode;
     }
-    this.count--;
-    return deleteNode;
+
   }
 
   // 6. deleteLast()
@@ -102,7 +166,7 @@ public class LinkedList {
   }
 
   public static void main(String[] args) {
-    LinkedList linkedList = new LinkedList();
+    DoublyLinkedList linkedList = new DoublyLinkedList();
     System.out.println("===== insertAt() 5번 호출 =====");
     linkedList.insertAt(0, 0);
     linkedList.insertAt(1, 1);
