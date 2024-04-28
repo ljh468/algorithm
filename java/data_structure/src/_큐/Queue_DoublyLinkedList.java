@@ -5,7 +5,7 @@ import _연결리스트.Node;
 
 public class Queue_DoublyLinkedList {
 
-  private DoublyLinkedList doublyLinkedList;
+  private final DoublyLinkedList doublyLinkedList;
 
   public Queue_DoublyLinkedList() {
     doublyLinkedList = new DoublyLinkedList();
@@ -20,7 +20,7 @@ public class Queue_DoublyLinkedList {
   public Node dequeue() {
     try {
       return doublyLinkedList.deleteLast();
-    } catch (Exception exception) {
+    } catch (Exception e) {
       return null;
     }
   }
@@ -32,27 +32,32 @@ public class Queue_DoublyLinkedList {
 
   // isEmpty() - 비었는지 확인
   public boolean isEmpty() {
-    return doublyLinkedList.getCount() == 0;
+    return doublyLinkedList.isEmpty();
+  }
+
+  // printAll() - 데이터 출력
+  public void printAll() {
+    doublyLinkedList.printAll();
   }
 
   public static void main(String[] args) {
-    Queue_DoublyLinkedList queue = new Queue_DoublyLinkedList();
+    Queue_DoublyLinkedList queueDoublyLinkedList = new Queue_DoublyLinkedList();
     System.out.println("===== enqueue() 3번 호출 =====" );
-    queue.enqueue(1);
-    queue.enqueue(2);
-    queue.enqueue(3);
-    queue.doublyLinkedList.printAll();
-    System.out.println("queue.front() = " + queue.front());
+    queueDoublyLinkedList.enqueue(1);
+    queueDoublyLinkedList.enqueue(2);
+    queueDoublyLinkedList.enqueue(3);
+    queueDoublyLinkedList.printAll();
+    System.out.println("queue.front() = " + queueDoublyLinkedList.front());
 
     System.out.println("===== dequeue() 1번 호출 =====" );
-    System.out.println("queue.dequeue() = " + queue.dequeue());
-    queue.doublyLinkedList.printAll();
-    System.out.println("queue.isEmpty() = " + queue.isEmpty());
+    System.out.println("queue.dequeue() = " + queueDoublyLinkedList.dequeue());
+    queueDoublyLinkedList.printAll();
+    System.out.println("queue.isEmpty() = " + queueDoublyLinkedList.isEmpty());
 
     System.out.println("===== dequeue() 2번 호출 =====" );
-    System.out.println("queue.dequeue() = " + queue.dequeue());
-    System.out.println("queue.dequeue() = " + queue.dequeue());
-    queue.doublyLinkedList.printAll();
-    System.out.println("queue.isEmpty() = " + queue.isEmpty());
+    System.out.println("queue.dequeue() = " + queueDoublyLinkedList.dequeue());
+    System.out.println("queue.dequeue() = " + queueDoublyLinkedList.dequeue());
+    queueDoublyLinkedList.printAll();
+    System.out.println("queue.isEmpty() = " + queueDoublyLinkedList.isEmpty());
   }
 }

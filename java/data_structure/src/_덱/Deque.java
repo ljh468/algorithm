@@ -8,31 +8,45 @@ public class Deque {
   private final DoublyLinkedList doublyLinkedList;
 
   public Deque() {
-    this.doublyLinkedList = new DoublyLinkedList();
+    doublyLinkedList = new DoublyLinkedList();
   }
 
-  public void printAll() {
-    doublyLinkedList.printAll();
-  }
-
+  // addFirst(data)
   public void addFirst(int data) {
     doublyLinkedList.insertAt(0, data);
   }
 
+  // removeFirst()
   public Node removeFirst() {
-    return doublyLinkedList.deleteAt(0);
+    try {
+      return doublyLinkedList.deleteAt(0);
+    } catch (Exception e) {
+      return null;
+    }
   }
 
+  // addLast(data)
   public void addLast(int data) {
     doublyLinkedList.insertLast(data);
   }
 
+  // removeLast()
   public Node removeLast() {
-    return doublyLinkedList.deleteLast();
+    try {
+      return doublyLinkedList.deleteLast();
+    } catch (Exception e) {
+      return null;
+    }
   }
 
+  // isEmpty()
   public boolean isEmpty() {
-    return doublyLinkedList.getCount() == 0;
+    return doublyLinkedList.isEmpty();
+  }
+
+  // printAll()
+  public void printAll() {
+    doublyLinkedList.printAll();
   }
 
   public static void main(String[] args) {
