@@ -298,7 +298,7 @@ int main(){
     //     cout << it.first << " : " << it.second << "\n";
     // }
 
-    // // sort()는 각각의 요소들을 cmp함수가 true 가 뜨는 “요소들의 순서”로 바꿔줌
+    // // sort()는 각각의 요소들을 cmp함수가 true가 나오는 “요소들의 순서”로 바꿔줌
     // // false가 나오면 자리를 바꿔줌
     // vector<int> v2 = {3, 10, 4, 11};
     // sort(v2.begin(), v2.end(), intcmp);
