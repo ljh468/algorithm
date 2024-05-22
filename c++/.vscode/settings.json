@@ -92,6 +92,7 @@
         "numeric": "cpp",
         "random": "cpp",
         "charconv": "cpp",
-        "execution": "cpp"
+        "execution": "cpp",
+        "e_농구경기_cpp": "c"
     }
 }
