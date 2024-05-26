@@ -14,46 +14,70 @@ using namespace std;
  */
 
 
-// 1. 사용할 변수 선언
+// // 1. 사용할 변수 선언
+// int n;
+// map<char, int> firstNameCountMap;
+// string fullName;
+// vector<char> result;
+
+// int main() {
+//     // 2. 먼저 선수 몇명인지 입력받음
+//     cin >> n;
+
+//     // 3. 선수들의 성을 입력받아 첫 글자를 카운트
+//     for (int i = 0; i < n; ++i) {
+//         cin >> fullName;
+//         char firstLetter = fullName[0];
+//         firstNameCountMap[firstLetter]++;
+//     }
+
+//     /**
+//      * Q. 5명이면 정답을 실패함, 문제가 5명을 선발한다고 했는데, 5명 이상인가봄
+//      * if (entry.second == 5)
+//      */
+//     // 4. 5명 이상인 엔트리를 벡터에 저장
+//     for (pair<char, int> entry : firstNameCountMap) {
+//         if (entry.second >= 5) {
+//             result.push_back(entry.first);
+//         }
+//     }
+
+//     // 5. 사전순으로 오름차순 정렬
+//     sort(result.begin(), result.end());
+
+//     // 6-1. 결과가 없으면 "PREDAJA" 출력
+//     if (result.empty()) {
+//         cout << "PREDAJA" << "\n";
+//         return 0;
+//     }
+//     // 6-2. 첫글자가 5명 인 선수 첫글자만 결과로 출력
+//     for (char c : result) {
+//             cout << c;
+//     }
+//     cout << "\n";
+//     return 0;
+// }
+
+// 배열 풀이
 int n;
-map<char, int> firstNameCountMap;
-string fullName;
-vector<char> result;
+int cnt[26];
+string s, ret;
 
 int main() {
-    // 2. 먼저 선수 몇명인지 입력받음
     cin >> n;
-
-    // 3. 선수들의 성을 입력받아 첫 글자를 카운트
-    for (int i = 0; i < n; ++i) {
-        cin >> fullName;
-        char firstLetter = fullName[0];
-        firstNameCountMap[firstLetter]++;
+    for(int i = 0; i < n; i++) {
+         cin >> s;
+         cnt[s[0] - 'a']++;
     }
-
-    /**
-     * Q. 5명이면 정답을 실패함, 문제가 5명을 선발한다고 했는데, 5명 이상인가봄
-     * if (entry.second == 5)
-     */
-    // 4. 5명 이상인 엔트리를 벡터에 저장
-    for (pair<char, int> entry : firstNameCountMap) {
-        if (entry.second >= 5) {
-            result.push_back(entry.first);
+    for(int i = 0; i < 26; i++) {
+        if(cnt[i] >= 5) {
+            ret += i + 'a';
         }
     }
-
-    // 5. 사전순으로 오름차순 정렬
-    sort(result.begin(), result.end());
-
-    // 6-1. 결과가 없으면 "PREDAJA" 출력
-    if (result.empty()) {
+    if(ret.size()) {
+        cout << ret << "\n";
+    } else {
         cout << "PREDAJA" << "\n";
-        return 0;
     }
-    // 6-2. 첫글자가 5명 인 선수 첫글자만 결과로 출력
-    for (char c : result) {
-            cout << c;
-    }
-    cout << "\n";
-    return 0;
+
 }
