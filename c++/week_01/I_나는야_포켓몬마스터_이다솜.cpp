@@ -29,8 +29,8 @@ int main () {
     // key값을 string으로 가지는 map2
     for(int i = 0; i < n; i++) {
         cin >> s;
-        map1[i+1] = s;
-        map2[s] = i+1;
+        map1[i + 1] = s;
+        map2[s] = i + 1;
     }
 
     // 2. m만큼 입력을 받음 (숫자일수도? 문자일수도?)
