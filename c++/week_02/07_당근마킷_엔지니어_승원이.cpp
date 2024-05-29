@@ -62,12 +62,17 @@ int main(){
     visited[sy][sx] = 1;
     q.push({sy, sx});
     while(q.size()){
-        tie(y, x) = q.front(); q.pop(); 
+        tie(y, x) = q.front();
+        q.pop(); 
         for(int i = 0; i < 4; i++){
             int ny = y + dy[i]; 
             int nx = x + dx[i]; 
-            if(ny < 0 || ny >= n || nx < 0 || nx >= m || a[ny][nx] == 0) continue; 
-            if(visited[ny][nx]) continue; 
+            if(ny < 0 || ny >= n || nx < 0 || nx >= m || a[ny][nx] == 0) {
+                continue;
+            }
+            if(visited[ny][nx]) {
+                continue;
+            }
             visited[ny][nx] = visited[y][x] + 1; 
             q.push({ny, nx}); 
         } 
