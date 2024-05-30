@@ -13,7 +13,7 @@ using namespace std;
  * - 그다음의 자신의 노드를 방문하고 그 다음 오른쪽 노드를 방문하는 것을 말함
  * - "안에 넣다."
  * 
- * 레벨순회(level traversal)
+ * 레벨순회 (level traversal)
  * - BFS를 생각하면 됨
  */
 vector<int> adj[1004];
