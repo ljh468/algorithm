@@ -11,5 +11,7 @@ public class HashSet {
   // clear() - 셋 비우기
 
   // isEmpty() - 셋이 비었는지 체크
+
+  // test
   
 }
