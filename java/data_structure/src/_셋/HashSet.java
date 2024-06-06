@@ -1,6 +1,6 @@
 package _셋;
 
-public class Set {
+public class HashSet {
 
   // add(data) - 데이터 삽입
 
