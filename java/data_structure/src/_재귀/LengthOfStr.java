@@ -9,12 +9,8 @@ public class LengthOfStr {
     if (arr.length == 0) {
       return 0;
     }
-
-    // 배열의 마지막 요소를 제외한 새로운 배열을 생성
-    String[] newArr = Arrays.copyOfRange(arr, 0, arr.length - 1);
-
-    // 재귀적으로 새로운 배열의 길이를 계산하여 1을 더하여 반환
-    return strLength(newArr) + 1;
+    // 재귀적으로 배열의 마지막 요소를 제외한 새로운 배열에 +1을 더하여 반환
+    return strLength(Arrays.copyOfRange(arr, 0, arr.length - 1)) + 1;
   }
 
   public static void main(String[] args) {

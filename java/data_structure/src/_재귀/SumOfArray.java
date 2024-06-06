@@ -10,7 +10,7 @@ public class SumOfArray {
       return arr[0];
     }
     // 재귀적으로 새로운 배열의 합과 마지막 요소를 더하여 반환
-    return sumArray(Arrays.copyOfRange(arr, 0, arr.length - 1))+ arr[arr.length - 1];
+    return sumArray(Arrays.copyOfRange(arr, 0, arr.length - 1)) + arr[arr.length - 1];
   }
 
   public static void main(String[] args) {
