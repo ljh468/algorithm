@@ -17,47 +17,6 @@ import java.util.Arrays;
  */
 public class QuickSort {
 
-  //  void quickSort(int[] arr, int left, int right) {
-  //    // 기저조건
-  //    if (left < right) {
-  //      // 정렬하기 위한 divide 함수 호출
-  //      int pivotIndex = divide(arr, left, right);
-  //
-  //      // 피벗의 왼쪽 영역 정렬
-  //      quickSort(arr, left, pivotIndex - 1);
-  //
-  //      // 피벗의 오른쪽 영역 정렬
-  //      quickSort(arr, pivotIndex + 1, right);
-  //    }
-  //  }
-  //
-  //  int divide(int[] arr, int left, int right) {
-  //    int pivot = arr[left];
-  //    int leftStartIndex = left + 1;
-  //    int rightStartIndex = right;
-  //
-  //    while (leftStartIndex <= rightStartIndex) {
-  //      // 왼쪽 포인트가 피벗보다 큰 값을 만날 때까지 오른쪽으로 이동
-  //      while (leftStartIndex <= right && arr[leftStartIndex] <= pivot) {
-  //        leftStartIndex++;
-  //      }
-  //
-  //      // 오른쪽 포인트가 피벗보다 작은 값을 만날 때까지 왼쪽으로 이동
-  //      while (rightStartIndex >= (left + 1) && arr[rightStartIndex] >= pivot) {
-  //        rightStartIndex--;
-  //      }
-  //
-  //      // 서로 교차하지 않으면 값의 위치를 변경
-  //      if (leftStartIndex < rightStartIndex) {
-  //        swap(arr, leftStartIndex, rightStartIndex);
-  //      }
-  //    }
-  //
-  //    // while문이 끝나면 왼쪽 포인트와 오른쪽 포인트는 교차하게 됨
-  //    swap(arr, left, rightStartIndex);
-  //    return rightStartIndex; // 정렬된 피벗의 인덱스를 반환
-  //  }
-
   void quickSort(int[] arr, int left, int right) {
     // 기저조건
     if (left < right) {
