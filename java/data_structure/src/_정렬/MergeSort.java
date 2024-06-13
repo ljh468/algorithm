@@ -26,10 +26,9 @@ public class MergeSort {
     if (leftIndex < rightIndex) {
       // 배열의 가운데 index를 추출
       int midIndex = (leftIndex + rightIndex) / 2;
-
-      // 왼쪽 하위 배열 정렬
+      // 왼쪽 하위 호출
       mergeSort(arr, leftIndex, midIndex);
-      // 오른쪽 하위 배열 정렬
+      // 오른쪽 하위 호출
       mergeSort(arr, midIndex + 1, rightIndex);
       // 병합
       merge(arr, leftIndex, midIndex, rightIndex);
@@ -41,37 +40,34 @@ public class MergeSort {
     int leftAreaIndex = leftIndex;
     int rightAreaIndex = midIndex + 1;
 
-    // 새로운 배열에 값을 정렬하고 기존 배열에 덮어씌움
-    int[] tempArr = new int[arr.length];
+    int[] tempArr = new int[rightIndex + 1];
 
+    // 어느 한쪽의 배열의 정렬이 끝날때까지 반복
     while (leftAreaIndex <= midIndex && rightAreaIndex <= rightIndex) {
-      // 왼쪽 영역의 데이터가 작다면, arr[leftAreaIndex]를 tempArr에 넣어줌
+      // 왼쪽이 작다면? tempArr에 추가하고, leftAreaIndex + 1, tempAreaIndex + 1 해줌
       if (arr[leftAreaIndex] <= arr[rightAreaIndex]) {
-        tempArr[tempAreaIndex] = arr[leftAreaIndex];
-        leftAreaIndex++;
-      } else {
-        tempArr[tempAreaIndex] = arr[rightAreaIndex];
-        rightAreaIndex++;
+        tempArr[tempAreaIndex++] = arr[leftAreaIndex++];
+      } else { // 오른쪽이 작다면? tempArr에 추가하고, rightAreaIndex + 1, tempAreaIndex + 1
+        tempArr[tempAreaIndex++] = arr[rightAreaIndex++];
       }
-      // tempArr에 값을 넣어줬기때문에, tempAreaIndex를 1 늘려줌
-      tempAreaIndex++;
     }
 
-    // 나머지 영역을 tempArr에 추가
+    // 왼쪽의 배열이 모두 정렬 되었으면, 나머지 정렬되지 않은 오른쪽 배열의 원소를 추가해줌
     if (leftAreaIndex > midIndex) {
       for (int i = rightAreaIndex; i <= rightIndex; i++) {
         tempArr[tempAreaIndex++] = arr[i];
       }
-    } else {
+    } else { // 오른쪽 배열이 모두 정렬되었으면, 나머지 정렬되지 않은 왼쪽 배열의 원소를 추가해줌
       for (int i = leftAreaIndex; i <= midIndex; i++) {
         tempArr[tempAreaIndex++] = arr[i];
       }
     }
 
-    // tempArr -> arr에 옮김
+    // 정렬해준 tempArr를 원본 arr에 채워줌 (leftIndex -> rightIndex까지)
     for (int i = leftIndex; i <= rightIndex; i++) {
       arr[i] = tempArr[i];
     }
+
   }
 
   public static void main(String[] args) {
