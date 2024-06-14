@@ -20,7 +20,7 @@ public class QuickSort {
   void quickSort(int[] arr, int left, int right) {
     // 기저조건
     if (left < right) {
-      // 피벗
+      // 피벗을 기준으로 왼쪽과 오른쪽배열을 나누기위해 divide 함수 호출
       int pivotIndex = divide(arr, left, right);
       // 피벗 왼쪽 배열 정렬
       quickSort(arr, left, pivotIndex - 1);

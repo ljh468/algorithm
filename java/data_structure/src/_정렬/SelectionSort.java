@@ -8,7 +8,7 @@ import java.util.Arrays;
  * 가장 작은 값을 정렬되지 않은 첫번째 배열로 가져오는 알고리즘
  * - 앞에서부터 시작해서 맨 왼쪽부터 가장 작은 값을 채워나가는 방법
  * - 이해와 구현이 간단함, 그러나 속도가 느림
- *
+ * <p>
  * 시간 복잡도
  * - 바깥쪽 for문이 실행될 수 록 안쪽 for문이 줄어드는 형태 (등차수열의 합)
  * - 이중 for문이 동작하기때문에 O(n^2)의 시간 (느림)
@@ -17,7 +17,7 @@ public class SelectionSort {
 
   void selectionSort(int[] arr) {
     // 1 사이클의 순회는(배열의 갯수 - 1) 번 수행됨
-    for(int i = 0; i < arr.length - 1; i++) {
+    for (int i = 0; i < arr.length - 1; i++) {
       int minValueIndex = i;
 
       // 가장 작은 값을 탐색하기위해 순회
