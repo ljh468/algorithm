@@ -81,6 +81,36 @@ public class BinaryTree {
     System.out.println(tree.getData());
   }
 
+  /**
+   * BinarySearchTree에서 노드를 제거하기 위해 필요한 함수
+   */
+  // 1. removeLeftSubTree() - 왼쪽 자식노드를 제거
+  BinaryTree removeLeftSubTree() {
+    // 제거할 노드는 반환해야하기 때문에, 변수에 저장
+    BinaryTree deletingNode = this.getLeftSubTree();
+    // 왼쪽 자식노드 연결 끊기
+    this.setLeftSubTree(null);
+    return deletingNode;
+  }
+
+  // 2. removeRightSubTree() - 오른쪽 자식노드를 제거
+  BinaryTree removeRightSubTree() {
+    // 제거할 노드는 반환해야하기 때문에, 변수에 저장
+    BinaryTree deletingNode = this.getLeftSubTree();
+    // 왼쪽 자식노드 연결 끊기
+    this.setRightSubTree(null);
+    return deletingNode;
+  }
+
+  @Override
+  public String toString() {
+    return "BinaryTree{" +
+        "data=" + data +
+        ", leftSubTree=" + leftSubTree +
+        ", rightSubTree=" + rightSubTree +
+        '}';
+  }
+
   public static void main(String[] args) {
     BinaryTree tree1 = new BinaryTree(1);
     BinaryTree tree2 = new BinaryTree(2);
