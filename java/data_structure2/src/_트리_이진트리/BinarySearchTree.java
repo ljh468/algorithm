@@ -80,45 +80,43 @@ public class BinarySearchTree {
    * - 2. 값이 있는 마지막 오른쪽 자식노드를 제거할 노드로 교체
    * - 3. 마지막 오른쪽 자식노드는 왼쪽 자식노드로 교체 (왼쪽 노드가 없으면 그냥 없앰)
    */
-  public BinaryTree remove(int targetData) {
-    // 루트노드를 제거할 때 사용하기 위한 페이크 노드 (루트노드의 임시 부모노드)
+  public BinaryTree remove(int data) {
+    // 필요한 변수 선언
     BinaryTree fakeParentRootNode = new BinaryTree(0);
+    fakeParentRootNode.setRightSubTree(this.root);
     BinaryTree parentNode = fakeParentRootNode;
     BinaryTree currentNode = this.root;
-    BinaryTree deletingNode = null; // 제거할 노드
+    BinaryTree deletingNode = null;
 
-    // fakeParentRootNode의 자식으로 루트노드를 연결 (왼쪽, 오른쪽 상관없음)
-    fakeParentRootNode.setRightSubTree(this.root);
-
-    // 현재노드가 존재하고, 제거할 노드를 찾지 못할때 까지 반본
-    while (currentNode != null && currentNode.getData() != targetData) {
+    // 1. 삭제할 노드 찾기
+    while (currentNode != null && currentNode.getData() != data) {
       parentNode = currentNode;
-      if (targetData < currentNode.getData()) {
+      if (currentNode.getData() > data) {
         currentNode = currentNode.getLeftSubTree();
       } else {
         currentNode = currentNode.getRightSubTree();
       }
     }
 
-    // 제거할 노드를 찾지 못한 경우 currentNode는 null을 가리킴, 함수 종료
+    // 1-1. 삭제할 노드가 존재 하지 않으면 리턴
     if (currentNode == null) {
-      return null;
+      return currentNode;
     }
-    // 제거할 노드를 찾은경우 currentNode는 제거할 노드를 가리킴
-    deletingNode = currentNode;
 
-    // 1. 터미널 노드(자식이 없는 최하위 노드) 제거하려는 경우
+    // 2. 삭제할 노드 처리 (삭제할 노드가 있을때)
+    deletingNode = currentNode;
+    // 2-1. 삭제할 노드의 자식노드가 없을때
     if (deletingNode.getLeftSubTree() == null && deletingNode.getRightSubTree() == null) {
-      // 부모 노드와 연결끊기
-      if (parentNode.getLeftSubTree() != null && parentNode.getLeftSubTree() == deletingNode) {
+      // 삭제할 노드와 부모노드의 연결끊기
+      if (parentNode.getLeftSubTree() == deletingNode) {
         parentNode.removeLeftSubTree();
       } else {
         parentNode.removeRightSubTree();
       }
     }
-    // 2. 자식노드가 1개인 노드를 제거하려는 경우
+    // 2-2. 삭제할 노드의 자식노드가 1개일때
     else if (deletingNode.getLeftSubTree() == null || deletingNode.getRightSubTree() == null) {
-      // 제거할 노드의 자식노드 임시 저장
+      // 삭제할 노드의 부모노드와 삭제할 노드의 자식노드 연결
       BinaryTree deletingNodeChild;
       if (deletingNode.getLeftSubTree() != null) {
         deletingNodeChild = deletingNode.getLeftSubTree();
@@ -126,52 +124,44 @@ public class BinarySearchTree {
         deletingNodeChild = deletingNode.getRightSubTree();
       }
 
-      // 제거할 노드의 자식노드를 제거할 노드의 부모노드와 연결
-      if (parentNode.getLeftSubTree() != null && parentNode.getLeftSubTree() == deletingNode) {
+      if (parentNode.getLeftSubTree() == deletingNode) {
         parentNode.setLeftSubTree(deletingNodeChild);
       } else {
         parentNode.setRightSubTree(deletingNodeChild);
       }
     }
-    // 3. 자식노드가 2개인 노드를 제거하려는 경우
+    // 2-3. 삭제할 노드의 자식노드가 2개일때
     else {
-      // 제거할 노드의 왼쪽 자식노드 준비
+      // 왼쪽 1번 -> 오른쪽 계속 이동
       BinaryTree replacingNode = deletingNode.getLeftSubTree();
-      BinaryTree replacingNodeParent = deletingNode;
-      // 왼쪽 자식노드에서 오른쪽으로 계속 이동한 노드 찾기
+      BinaryTree replacingParentNode = deletingNode;
       while (replacingNode.getRightSubTree() != null) {
-        replacingNodeParent = replacingNode;
+        replacingParentNode = replacingNode;
         replacingNode = replacingNode.getRightSubTree();
       }
-      // 제거할 값 저장
+
+      // 삭제할 값 미리 저장 (값을 바꿀때는 이전값은 미리 저장)
+      // 삭제할 노드를 대체할 노드의 값으로 변경
       int deletingNodeData = deletingNode.getData();
-      // 제거할 노드의 값을 대체할 값으로 덮어씌움
       deletingNode.setData(replacingNode.getData());
 
-      // 대체할 노드의 부모노드의 자식노드를 대체할 노드의 자식노드로 연결 (while문이 하나도 안돌수도 있음)
-      // 대체할 노드의 부모노드의 왼쪽 자식이 대체할 노드라면?
-      if (replacingNodeParent.getLeftSubTree() != null
-          && replacingNodeParent.getLeftSubTree() == replacingNode) {
-        // 대체할 노드의 부모노드의 왼쪽 자식노드를 대체할 노드의 왼쪽 자식노드로 설정
-        // 대체할 노드가 가장 큰값이기때문에, 대체할 노드의 오른쪽 자식은 존재하지 않음
-        replacingNodeParent.setLeftSubTree(replacingNode.getLeftSubTree());
-      }
-      // 대체할 노드의 부모노드의 오른쪽 자식이 대체할 노드라면?
-      else {
-        replacingNodeParent.setRightSubTree(replacingNode.getLeftSubTree());
+      // 대체할 노드의 부모노드와 대체할 노드의 자식노드 연결
+      if (replacingParentNode.getLeftSubTree() == replacingNode) {
+        replacingParentNode.setLeftSubTree(replacingNode.getLeftSubTree());
+      } else {
+        replacingParentNode.setRightSubTree(replacingNode.getRightSubTree());
       }
 
-      // 삭제할 노드를 대체할 노드로 변경
+      // 이미 삭제할 노드에 대체할 값으로 변경했기 때문에
+      // 삭제할 노드를 필요없는 대체할 노드로 변경, 삭제할 노드의 값도 변경
       deletingNode = replacingNode;
       deletingNode.setData(deletingNodeData);
     }
-
-    // 특수한 경우를 처리
-    // 제거하려는 노드가 루트노드인 경우, 변경된 루트노드를 이 이진탐색트리의 루트노드로 다시 설정해야함
-    // 루트 노드가 변경되었다면?
+    // 3. 루트노드가 변경되었을때 처리 (특별한 경우)
     if (fakeParentRootNode.getRightSubTree() != this.root) {
       this.root = fakeParentRootNode.getRightSubTree();
     }
+
     return deletingNode;
   }
 
@@ -193,7 +183,12 @@ public class BinarySearchTree {
     binarySearchTree.insert(35);
     binarySearchTree.insert(37);
 
+    System.out.println("전위 순회");
+    binarySearchTree.getRoot().preOrderTraversal(binarySearchTree.getRoot());
+    System.out.println("중위 순회");
     binarySearchTree.getRoot().inOrderTraversal(binarySearchTree.getRoot());
+    System.out.println("후위 순회");
+    binarySearchTree.getRoot().postOrderTraversal(binarySearchTree.getRoot());
 
     System.out.println("==== 데이터 6 탐색 ====");
     System.out.println("binarySearchTree.search(6) = " + binarySearchTree.search(6).getData());
