@@ -1,14 +1,15 @@
 package _AVL트리;
 
-import lombok.Getter;
-
 public class AvlTree {
 
-  @Getter
   private BinaryTree root;
 
   public AvlTree() {
     this.root = null;
+  }
+
+  public BinaryTree getRoot() {
+    return root;
   }
 
   // 데이터가 있는 노드를 조회
@@ -203,7 +204,7 @@ public class AvlTree {
   public BinaryTree removeHelper(BinaryTree deletingNode, BinaryTree parentNode) { // 4, 3
     BinaryTree fakeParentRootNode = new BinaryTree(0);
     fakeParentRootNode.setRightSubTree(this.root);
-    
+
     if (parentNode == null) {
       parentNode = fakeParentRootNode;
     }
