@@ -6,6 +6,6 @@ public class NilNode extends BinaryTree {
 
   public NilNode() {
     super(0);
-    this.color = BLACK;
+    this.color = BLACK; // NilNode는 검은색
   }
 }

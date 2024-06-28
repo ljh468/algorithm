@@ -4,7 +4,7 @@ public class BinaryTree {
 
   public static boolean RED = false;
 
-  public static boolean BLACK = false;
+  public static boolean BLACK = true;
 
   private int data;
 
