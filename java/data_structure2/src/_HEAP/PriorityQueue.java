@@ -35,7 +35,7 @@ public class PriorityQueue<T extends Comparable<T>> {
 
   public static void main(String[] args) {
     // 우선순위 큐의 몬스터의 우선순위 값이 큰 것이 우선순위가 높도록 설정 가능
-    PriorityQueue<Monster> priorityQueue = new PriorityQueue<Monster>() {
+    PriorityQueue<Monster> priorityQueue = new PriorityQueue<>() {
       @Override
       public boolean isBigPriority(Monster first, Monster second) {
         return first.getPriority() > second.getPriority();
