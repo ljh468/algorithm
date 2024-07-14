@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="boot_agit" target="21" />
+      <module name="boot_agit.main" target="21" />
+      <module name="boot_agit.test" target="21" />
+      <module name="bottAgit" target="21" />
+      <module name="bottAgit.main" target="21" />
+      <module name="bottAgit.test" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

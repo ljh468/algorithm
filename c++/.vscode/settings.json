@@ -94,5 +94,6 @@
         "charconv": "cpp",
         "execution": "cpp",
         "e_농구경기_cpp": "c"
-    }
+    },
+    // "C_Cpp.errorSquiggles": "disabled"
 }
