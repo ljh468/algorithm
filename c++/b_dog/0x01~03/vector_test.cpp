@@ -23,7 +23,7 @@ int main() {
   printVector(v3);
   
   vector<int> v4; // {}
-  v4 = v3; // {1, 2, 4}
+  v4 = v3; // deepcopy - {1, 2, 4}
   printVector(v4);
   
   v4.pop_back(); // {1, 2}
@@ -32,4 +32,4 @@ int main() {
   v4.clear(); // {}
   printVector(v4);
   return 0;
-}
+} 

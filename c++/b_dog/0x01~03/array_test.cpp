@@ -32,7 +32,7 @@ int main() {
   int a[10] = {1, 2, 4, 5, 6, 7, 8, 9, 10};
   cout << "원본 배열: " << '\n';
   printArr(a, len);
-  
+
   cout << "3{index(2)} 추가: " << '\n';
   insert(2, 3, a, len);
   printArr(a, len);
@@ -40,46 +40,40 @@ int main() {
   cout << "4{index(3)} 제거: " << '\n';
   erase(3, a, len);
   printArr(a, len);
-  
+
   // 사용팁 - 배열 초기화 방법
   int aa[21];
   int bb[21][21];
 
   // 1. for
-  for(int i = 0; i < 21; i++){
+  for (int i = 0; i < 21; i++) {
     aa[i] = 0;
   }
-  
-  for(int i = 0; i < 21; i++) {
-    for(int j = 0; j < 21; j++) {
+
+  for (int i = 0; i < 21; i++) {
+    for (int j = 0; j < 21; j++) {
       bb[i][j] = 0;
     }
   }
-  
+
   // 2. fill
   int len2 = 21;
   fill(aa, aa + len2, 0);
   printArr(aa, len2);
-  
-  for(int i = 0; i < len2; i++) {
+
+  // 2-1. fill을 활용한 2차원 배열 초기화
+  for (int i = 0; i < len2; i++) {
     fill(bb[i], bb[i] + len2, 0);
   }
-  
-  for (const auto& row : bb) {
+
+  // 2차원 배열 출력
+  for (const auto& row : bb) { // "for (int(&row)[21] : bb) {" 도 가능
     for (int val : row) {
       cout << val << " ";
     }
     cout << "\n";
   }
   cout << "\n";
-  
-  
-for (int (&row)[21] : bb) {
-    for (int val : row) {
-      cout << val << " ";
-    }
-    cout << "\n";
-  }
-  cout << "\n";
+
   return 0;
 }
