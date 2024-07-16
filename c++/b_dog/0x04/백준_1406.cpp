@@ -1,6 +1,6 @@
 #include <iostream>
-#include <string>
 #include <list>
+#include <string>
 using namespace std;
 
 // N이 100,000까지 들어올 수 있기때문에 vector로 풀수 없다. O(NlogN) - 100만
@@ -64,8 +64,8 @@ int main() {
         break;
     }
   }
-  
-  for(char c : text_list) {
+
+  for (char c : text_list) {
     cout << c;
   }
   return 0;

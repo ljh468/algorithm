@@ -19,6 +19,10 @@
     "initializer_list": "cpp",
     "regex": "cpp",
     "string_view": "cpp",
-    "valarray": "cpp"
+    "valarray": "cpp",
+    "stack": "cpp",
+    "__config": "cpp",
+    "queue": "cpp",
+    "typeinfo": "cpp"
   }
 }
