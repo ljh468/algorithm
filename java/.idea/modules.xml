@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/programmers/1단계/1단계.iml" filepath="$PROJECT_DIR$/programmers/1단계/1단계.iml" />
       <module fileurl="file://$PROJECT_DIR$/programmers/2단계/2단계.iml" filepath="$PROJECT_DIR$/programmers/2단계/2단계.iml" />
       <module fileurl="file://$PROJECT_DIR$/beakjoon/beakjoon.iml" filepath="$PROJECT_DIR$/beakjoon/beakjoon.iml" />
-      <module fileurl="file://$PROJECT_DIR$/boot_agit/boot_agit.iml" filepath="$PROJECT_DIR$/boot_agit/boot_agit.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/boot_agit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/boot_agit.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/boot_agit.test.iml" filepath="$PROJECT_DIR$/.idea/modules/boot_agit.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/bottAgit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/bottAgit.main.iml" />
