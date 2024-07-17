@@ -27,7 +27,7 @@ void pop() {
   }
 }
 
-int front() { return dat[head]; }
+int front() { return dat[head]; } 
 
 int back() { return dat[tail - 1]; }
 
