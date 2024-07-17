@@ -46,16 +46,16 @@ public class Trie {
 
     // 검색된 단어의 빈도수를 1증가 (단어의 끝을 나타내는 *의 count를 증가)
     if (isCounting) {
-      TrieNode endNode = currentNode.getChildren().get('*');
-      if (endNode != null) {
-        endNode.setCount(endNode.getCount() + 1);
-      }
+      currentNode.getChildren().computeIfPresent('*', (key, value) -> {
+        value.setCount(value.getCount() + 1);
+        return value;
+      });
     }
     // 단어를 찾으면 마지막 노드를 리턴
     return currentNode;
   }
 
-  // 완전한 단어를 모두 조회하는 getAllWords 메서드
+  // 완전한 단어를 모두 조회하는 getAllWords 메서드₩
   public List<WordData> getAllWords(TrieNode startNode,
                                     String word,
                                     List<WordData> words) {
