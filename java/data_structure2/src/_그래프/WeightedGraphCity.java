@@ -34,7 +34,7 @@ public class WeightedGraphCity {
   public String toString() {
     return "WeightedGraphCity{" +
         "name='" + name + '\'' +
-        ", adjacentCities=" + adjacentCities +
+//        ", adjacentCities=" + adjacentCities +
         '}';
   }
 }

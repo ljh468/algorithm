@@ -36,30 +36,40 @@ public class Dijkstra {
 
     // 방문한 도시를 저장할 변수
     List<String> visitedCities = new ArrayList<>();
+
     // 방문하지 않은 도시를 저장할 변수
     List<String> unvisitedCities = new ArrayList<>();
-    // 최단 경로 테이블
-    Map<String, Integer> shortestPathTable = new HashMap<>();
 
-    // 최단거리 테이블에 도시들의 최단거리를 MAX_VALUE로 & 방문한 도시 테이블은 false로 초기화
+    // 최단 경로 테이블
+    // Map<String, Integer> shortestPathTable = new HashMap<>();
+    // 최단 경로 테이블 (거리와 이전 도시 정보를 저장)
+    Map<String, PathInfo> shortestPathTable = new HashMap<>();
+
+    // 최단거리 테이블에 도시들의 최단거리와 이전 방문도시 초기화 & 방문한 도시 테이블은 false로 초기화
     for (String cityName : allCities.keySet()) {
-      shortestPathTable.put(cityName, Integer.MAX_VALUE);
+      // shortestPathTable.put(cityName, Integer.MAX_VALUE);
+      shortestPathTable.put(cityName, new PathInfo(Integer.MAX_VALUE, null));
       unvisitedCities.add(cityName);
     }
 
     // 시작 도시의 거리를 0으로 설정
-    shortestPathTable.put(startCity.getName(), 0);
+    // shortestPathTable.put(startCity.getName(), 0);
+    shortestPathTable.put(startCity.getName(), new PathInfo(0, null));
 
     // 방문하지 않은 도시중에서 가장 가까운 도시 찾기
-    while (unvisitedCities.size() > 0) {
+    while (unvisitedCities.isEmpty() == false) {
       String closestCityName = null;
       for (String cityName : unvisitedCities) {
         // closestCityName가 null이면 현재 순회하는 도시를 가장 가까운 도시로 설정
         // 테이블에 등록된 가장 가까운 도시보다 현재 순회하는 도시가 가깝다면 현재 순회하는 도시를 가장 가까운 도시로 업데이트
-        if (closestCityName == null || (shortestPathTable.get(cityName) < shortestPathTable.get(closestCityName))) {
+        if (closestCityName == null ||
+            (shortestPathTable.get(cityName).getDistance() < shortestPathTable.get(closestCityName).getDistance())) {
           closestCityName = cityName;
         }
       }
+
+      // 모든 도시가 방문되었거나 도달할 수 없는 경우
+      if (closestCityName == null) break;
 
       // closestCityName(가장 가까운 도시)을 방문한 도시에 등록
       visitedCities.add(closestCityName);
@@ -78,18 +88,33 @@ public class Dijkstra {
         }
 
         // 출발도시에서 방문한 도시까지 오는 최단거리 + 방문한 도시에서 인접도시까지의 거리
-        int newDist = shortestPathTable.get(closestCityName) + distance;
+        int newDist = shortestPathTable.get(closestCityName).getDistance() + distance;
 
         // 출발도시에서 현재도시를 거쳐 인접도시로 가는 거리가 최단거리 테이블에 저장된 거리보다 더 짧다면 최단거리 테이블을 업데이트
-        if (newDist < shortestPathTable.get(adjacentCityName)) {
-          shortestPathTable.put(adjacentCityName, newDist);
+        if (newDist < shortestPathTable.get(adjacentCityName).getDistance()) {
+          shortestPathTable.put(adjacentCityName, new PathInfo(newDist, currentCity));
         }
       }
-
     }
 
+    // 최단 경로를 출력
+    String pathString = showShortestPathRecursively(endCity.getName(), shortestPathTable);
+    System.out.println("최단 경로: " + pathString);
     System.out.println("최단 경로 테이블: " + shortestPathTable);
-    System.out.println("출발도시(" + startCity.getName() + ")에서 도착도시(" + endCity.getName() + ")까지의 최단 거리: " + shortestPathTable.get(endCity.getName()));
+    System.out.println("출발도시(" + startCity.getName() + ")에서 도착도시(" + endCity.getName() + ")까지의 최단 거리: " + shortestPathTable.get(endCity.getName()).distance);
+  }
+
+  // 재귀적으로 최단 경로를 출력하는 메서드
+  private String showShortestPathRecursively(String destinationCityName,
+                                             Map<String, PathInfo> shortestPathTable) {
+    // 기저 조건
+    PathInfo pathInfo = shortestPathTable.get(destinationCityName);
+    if (pathInfo.previousCity == null) {
+      return destinationCityName;
+    }
+    String pathString = showShortestPathRecursively(pathInfo.previousCity.getName(), shortestPathTable);
+    pathString += " -> " + destinationCityName;
+    return pathString;
   }
 
   public static void main(String[] args) {
@@ -147,6 +172,11 @@ public class Dijkstra {
     daegu.addAdjacentCity(jeonju, 130);
 
     // 최단 경로 계산
+    // 서울 -> 대구
     dijkstra.shortestPath(seoul, daegu);
+    System.out.println();
+    // 강릉 -> 전주
+    dijkstra.shortestPath(gangneung, jeonju);
   }
+
 }
