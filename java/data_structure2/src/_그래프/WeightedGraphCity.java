@@ -22,11 +22,11 @@ public class WeightedGraphCity {
     return adjacentCities;
   }
 
-  void addAdjacentCity(WeightedGraphCity city, int distance) {
+  public void addAdjacentCity(WeightedGraphCity city, int distance) {
     this.adjacentCities.put(city.getName(), distance);
   }
 
-  void removeAdjacentCity(WeightedGraphCity city) {
+  public void removeAdjacentCity(WeightedGraphCity city) {
     this.adjacentCities.remove(city.getName());
   }
 

@@ -1,37 +1,34 @@
-package _그래프;
+package _알고리즘;
+
+import _그래프.PathInfo;
+import _그래프.WeightedGraphCity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Dijkstra {
+public class Prim {
 
   // 모든 도시를 저장할 변수
   private final Map<String, WeightedGraphCity> allCities;
 
-  public Dijkstra() {
+  public Prim() {
     this.allCities = new HashMap<>();
   }
 
   // 도시를 추가하는 registerCity 메서드
-  void registerCity(WeightedGraphCity city) {
+  public void registerCity(WeightedGraphCity city) {
     this.allCities.put(city.getName(), city);
   }
 
   // 최단 경로를 계산하는 shortestPath 메서드
-  void shortestPath(WeightedGraphCity startCity, WeightedGraphCity endCity) {
+  public Map<String, PathInfo> mst(WeightedGraphCity startCity) {
 
     // 만약 시작도시가 등록되어 있지 않다면, 거리계산이 불가능 하므로 함수종료
     if (allCities.containsKey(startCity.getName()) == false) {
       System.out.println("출발 도시가 등록되어 있지 않습니다.");
-      return;
-    }
-
-    // 만약 도착도시가 등록되어 있지 않다면, 거리계산이 불가능 하므로 함수종료
-    if (allCities.containsKey(endCity.getName()) == false) {
-      System.out.println("도착 도시가 등록되어 있지 않습니다.");
-      return;
+      return Map.of();
     }
 
     // 방문한 도시를 저장할 변수
@@ -40,21 +37,18 @@ public class Dijkstra {
     // 방문하지 않은 도시를 저장할 변수
     List<String> unvisitedCities = new ArrayList<>();
 
-    // 최단 경로 테이블
-    // Map<String, Integer> shortestPathTable = new HashMap<>();
-    // 최단 경로 테이블 (거리와 이전 도시 정보를 저장)
-    Map<String, PathInfo> shortestPathTable = new HashMap<>();
+    // 도시와 도시간의 최소 거리를 저장할 변수
+    Map<String, PathInfo> mstTable = new HashMap<>();
 
     // 최단거리 테이블에 도시들의 최단거리와 이전 방문도시 초기화 & 방문한 도시 테이블은 false로 초기화
     for (String cityName : allCities.keySet()) {
       // shortestPathTable.put(cityName, Integer.MAX_VALUE);
-      shortestPathTable.put(cityName, new PathInfo(Integer.MAX_VALUE, null));
+      mstTable.put(cityName, new PathInfo(Integer.MAX_VALUE, null));
       unvisitedCities.add(cityName);
     }
 
     // 시작 도시의 거리를 0으로 설정
-    // shortestPathTable.put(startCity.getName(), 0);
-    shortestPathTable.put(startCity.getName(), new PathInfo(0, null));
+    mstTable.put(startCity.getName(), new PathInfo(0, null));
 
     // 방문하지 않은 도시중에서 가장 가까운 도시 찾기
     while (unvisitedCities.isEmpty() == false) {
@@ -63,7 +57,7 @@ public class Dijkstra {
         // closestCityName가 null이면 현재 순회하는 도시를 가장 가까운 도시로 설정
         // 테이블에 등록된 가장 가까운 도시보다 현재 순회하는 도시가 가깝다면 현재 순회하는 도시를 가장 가까운 도시로 업데이트
         if (closestCityName == null ||
-            (shortestPathTable.get(cityName).getDistance() < shortestPathTable.get(closestCityName).getDistance())) {
+            (mstTable.get(cityName).getDistance() < mstTable.get(closestCityName).getDistance())) {
           closestCityName = cityName;
         }
       }
@@ -87,21 +81,18 @@ public class Dijkstra {
           continue;
         }
 
-        // 출발도시에서 방문한 도시까지 오는 최단거리 + 방문한 도시에서 인접도시까지의 거리
-        int newDist = shortestPathTable.get(closestCityName).getDistance() + distance;
-
-        // 출발도시에서 현재도시를 거쳐 인접도시로 가는 거리가 최단거리 테이블에 저장된 거리보다 더 짧다면 최단거리 테이블을 업데이트
-        if (newDist < shortestPathTable.get(adjacentCityName).getDistance()) {
-          shortestPathTable.put(adjacentCityName, new PathInfo(newDist, currentCity));
+        // 프림 알고리즘은 현재 방문한 도시까지 걸리는 최소거리는 필요없고, 단순히 인접 도시까지 거리와 비교
+        // 방문한 현재도시에서 인접도시로 가는 거리가 mst테이블에 저장된 거리보다 더 짧다면 mst테이블을 업데이트
+        if (distance < mstTable.get(adjacentCityName).getDistance()) {
+          mstTable.put(adjacentCityName, new PathInfo(distance, currentCity));
         }
       }
+
     }
 
-    // 최단 경로를 출력
-    String pathString = showShortestPathRecursively(endCity.getName(), shortestPathTable);
-    System.out.println("최단 경로: " + pathString);
-    System.out.println("최단 경로 테이블: " + shortestPathTable);
-    System.out.println("출발도시(" + startCity.getName() + ")에서 도착도시(" + endCity.getName() + ")까지의 최단 거리: " + shortestPathTable.get(endCity.getName()).distance);
+    // MST 테이블 출력
+    System.out.println("mstTable = " + mstTable);
+    return mstTable;
   }
 
   // 재귀적으로 최단 경로를 출력하는 메서드
@@ -109,17 +100,18 @@ public class Dijkstra {
                                              Map<String, PathInfo> shortestPathTable) {
     // 기저 조건
     PathInfo pathInfo = shortestPathTable.get(destinationCityName);
-    if (pathInfo.previousCity == null) {
+    if (pathInfo.getPreviousCity() == null) {
       return destinationCityName;
     }
-    String pathString = showShortestPathRecursively(pathInfo.previousCity.getName(), shortestPathTable);
+    String pathString = showShortestPathRecursively(pathInfo.getPreviousCity().getName(),
+                                                    shortestPathTable);
     pathString += " -> " + destinationCityName;
     return pathString;
   }
 
   public static void main(String[] args) {
     // Dijkstra 인스턴스 생성
-    Dijkstra dijkstra = new Dijkstra();
+    Prim prim = new Prim();
 
     // 도시 인스턴스 생성
     WeightedGraphCity seoul = new WeightedGraphCity("서울");
@@ -130,12 +122,12 @@ public class Dijkstra {
     WeightedGraphCity daegu = new WeightedGraphCity("대구");
 
     // 도시 등록
-    dijkstra.registerCity(seoul);
-    dijkstra.registerCity(wonju);
-    dijkstra.registerCity(gangneung);
-    dijkstra.registerCity(daejeon);
-    dijkstra.registerCity(jeonju);
-    dijkstra.registerCity(daegu);
+    prim.registerCity(seoul);
+    prim.registerCity(wonju);
+    prim.registerCity(gangneung);
+    prim.registerCity(daejeon);
+    prim.registerCity(jeonju);
+    prim.registerCity(daegu);
 
     // 서울 연결
     seoul.addAdjacentCity(wonju, 87);
@@ -171,12 +163,9 @@ public class Dijkstra {
     daegu.addAdjacentCity(daejeon, 122);
     daegu.addAdjacentCity(jeonju, 130);
 
-    // 최단 경로 계산
-    // 서울 -> 대구
-    dijkstra.shortestPath(seoul, daegu);
+    // 각 정점간 거리의 최소값을 저장
+    Map<String, PathInfo> mstTable = prim.mst(seoul);
     System.out.println();
-    // 강릉 -> 전주
-    dijkstra.shortestPath(gangneung, jeonju);
   }
 
 }
