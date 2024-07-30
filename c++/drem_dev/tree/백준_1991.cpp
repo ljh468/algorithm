@@ -44,15 +44,15 @@ int main() {
 
     // 전위 순회 결과 출력
     preorder(tree, 'A');
-    cout << endl;
+    cout << "\n";
 
     // 중위 순회 결과 출력
     inorder(tree, 'A');
-    cout << endl;
+    cout << "\n";
 
     // 후위 순회 결과 출력
     postorder(tree, 'A');
-    cout << endl;
+    cout << "\n";
 
     return 0;
 }
