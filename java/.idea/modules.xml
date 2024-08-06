@@ -13,6 +13,7 @@
       <module fileurl="file://$PROJECT_DIR$/data_structure2/data_structure2.iml" filepath="$PROJECT_DIR$/data_structure2/data_structure2.iml" />
       <module fileurl="file://$PROJECT_DIR$/inflearn/inflearn.iml" filepath="$PROJECT_DIR$/inflearn/inflearn.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/java.iml" filepath="$PROJECT_DIR$/.idea/java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ps_study/ps_study.iml" filepath="$PROJECT_DIR$/ps_study/ps_study.iml" />
       <module fileurl="file://$PROJECT_DIR$/programmers/카카오인턴쉽/카카오인턴쉽.iml" filepath="$PROJECT_DIR$/programmers/카카오인턴쉽/카카오인턴쉽.iml" />
       <module fileurl="file://$PROJECT_DIR$/programmers/테스트/테스트.iml" filepath="$PROJECT_DIR$/programmers/테스트/테스트.iml" />
     </modules>
