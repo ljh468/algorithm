@@ -2,10 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Lv01_KAKAO_실패율 {
-  /**
-   * 실패율
-   * 스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수 / 스테이지에 도달한 플레이어 수
-   */
+
   public int[] solution(int n, int[] stages) {
     // 1. 스테이지별 도전자 수를 구함 (index:0 사용X, index:n+1 모두 클리어)
     int[] challenger = new int[n + 2];
