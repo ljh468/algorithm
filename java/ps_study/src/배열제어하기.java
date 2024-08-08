@@ -10,7 +10,7 @@ public class 배열제어하기 {
    * - 각 배열의 데이터 값은 -100,000이상 100,000이하
    */
 
-  public static int[] solution(int[] arr) {
+  public int[] solution(int[] arr) {
     // 1. 중복 제거
     Integer[] numbers = Arrays.stream(arr).boxed().distinct().toArray(Integer[]::new);
     // 2. 내림차순 정렬
@@ -19,9 +19,14 @@ public class 배열제어하기 {
   }
 
   public static void main(String[] args) throws IOException {
+    // 입력예시 :
+    // 4, 2, 2, 1, 3, 4
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    System.out.print("정수 배열을 입력하세요 (공백으로 구분): "); // 예시: 4, 2, 2, 1, 3, 4
+    System.out.print("정수 배열을 입력하세요 (공백으로 구분): ");
     int[] numbers = Arrays.stream(br.readLine().split(", ")).mapToInt(Integer::valueOf).toArray();
-    System.out.println(Arrays.toString(solution(numbers)));
+
+    배열제어하기 main = new 배열제어하기();
+    // 결과 : [4, 3, 2, 1]
+    System.out.println(Arrays.toString(main.solution(numbers)));
   }
 }

@@ -11,31 +11,35 @@ public class 배열정렬하기 {
    * - 정수 배열의 길이는 2이상 10^5이하
    * - 정수 배열의 각 데이터 값은 -100,000 이상 ~ 100,000 이하
    */
-  private static int[] sortAsc(int[] arr) {
+  private int[] sortAsc(int[] arr) {
     Arrays.sort(arr); // 오름차순으로 정렬
     return arr;
   }
 
-  private static int[] sortDesc(int[] arr) {
+  private int[] sortDesc(int[] arr) {
     Integer[] integerArray = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-    Arrays.sort(integerArray, Collections.reverseOrder());;
+    Arrays.sort(integerArray, Collections.reverseOrder());
     return Arrays.stream(integerArray).mapToInt(Integer::intValue).toArray();
   }
 
   public static void main(String[] args) throws IOException {
+    // 입력예시 :
+    // 1, -5, 2, 4, 3
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-    System.out.print("정수 배열을 입력하세요 (공백으로 구분): "); // 예시: 1, -5, 2, 4, 3
+    System.out.print("정수 배열을 입력하세요 (공백으로 구분): ");
     int[] numbers = Arrays.stream(br.readLine().split(", "))
                           .mapToInt(Integer::parseInt)
                           .toArray();
 
-    // 오름차순 정렬
-    int[] ascendingResult = sortAsc(numbers.clone());
+    배열정렬하기 main = new 배열정렬하기();
+
+    // 오름차순 정렬 결과 : [-5, 1, 2, 3, 4]
+    int[] ascendingResult = main.sortAsc(numbers.clone());
     System.out.println("오름차순 정렬 결과: " + Arrays.toString(ascendingResult));
 
-    // 내림차순 정렬
-    int[] descendingResult = sortDesc(numbers.clone());
+    // 내림차순 정렬 결과 : [4, 3, 2, 1, -5]
+    int[] descendingResult = main.sortDesc(numbers.clone());
     System.out.println("내림차순 정렬 결과: " + Arrays.toString(descendingResult));
   }
 }

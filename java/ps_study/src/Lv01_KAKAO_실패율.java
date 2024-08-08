@@ -44,13 +44,15 @@ public class Lv01_KAKAO_실패율 {
   }
 
   public static void main(String[] args) throws IOException {
-    Lv01_KAKAO_실패율 lv01Kakao_실패율 = new Lv01_KAKAO_실패율();
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    // 예시 :
+    // 입력예시 :
     // 5
     // 2, 1, 2, 6, 2, 4, 3, 3
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int n = Integer.parseInt(br.readLine());
     int[] arr = Arrays.stream(br.readLine().split(", ")).mapToInt(Integer::valueOf).toArray();
-    System.out.println("result = " + Arrays.toString(lv01Kakao_실패율.solution(n, arr)));
+
+    // 결과 : [3, 4, 2, 1, 5]
+    Lv01_KAKAO_실패율 main = new Lv01_KAKAO_실패율();
+    System.out.println("result = " + Arrays.toString(main.solution(n, arr)));
   }
 }

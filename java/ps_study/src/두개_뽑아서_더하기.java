@@ -12,7 +12,7 @@ public class 두개_뽑아서_더하기 {
    * - numbers의 길이는 2이상 100이하
    * - numbers의 모든 수는 0이상 100이하
    */
-  public static int[] solution(int[] numbers) {
+  public int[] solution(int[] numbers) {
     HashSet<Integer> set = new HashSet<>();
     for (int i = 0; i < numbers.length - 1; i++) {
       for (int j = i + 1; j < numbers.length; j++) {
@@ -27,9 +27,13 @@ public class 두개_뽑아서_더하기 {
   }
 
   public static void main(String[] args) throws IOException {
+    // 입력예시 :
+    // 1, 2, 3, 4, 1
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    // 예시: 1, 2, 3, 4, 1
     int[] numbers = Arrays.stream(br.readLine().split(", ")).mapToInt(Integer::valueOf).toArray();
-    System.out.println("solution(numbers) = " + Arrays.toString(solution(numbers)));
+
+    두개_뽑아서_더하기 main = new 두개_뽑아서_더하기();
+    // 결과 : [2, 3, 4, 5, 6, 7]
+    System.out.println("solution(numbers) = " + Arrays.toString(main.solution(numbers)));
   }
 }

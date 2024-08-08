@@ -28,9 +28,12 @@ public class Lv02_행렬의곱셈 {
   }
 
   public static void main(String[] args) {
+    // 입력예시 :
     int[][] arr1 = {{1, 4}, {3, 2}, {4, 1}};
     int[][] arr2 = {{3, 3}, {3, 3}};
-    Lv02_행렬의곱셈 lv02_행렬의곱셈 = new Lv02_행렬의곱셈();
-    System.out.println("result = " + Arrays.deepToString(lv02_행렬의곱셈.solution(arr1, arr2)));
+
+    Lv02_행렬의곱셈 main = new Lv02_행렬의곱셈();
+    // 결과 : [[15, 15], [15, 15], [15, 15]]
+    System.out.println("result = " + Arrays.deepToString(main.solution(arr1, arr2)));
   }
 }

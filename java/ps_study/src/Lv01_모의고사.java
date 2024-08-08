@@ -36,11 +36,14 @@ public class Lv01_모의고사 {
   }
 
   public static void main(String[] args) throws IOException {
+    // 입력예시 :
+    // 1, 3, 2, 4, 2
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    int[] arr = Arrays.stream(br.readLine().split(",")).mapToInt(Integer::valueOf).toArray();
+    int[] arr = Arrays.stream(br.readLine().split(", ")).mapToInt(Integer::valueOf).toArray();
 
-    Lv01_모의고사 LV01_모의고사 = new Lv01_모의고사();
-    System.out.println("result = " + Arrays.toString(LV01_모의고사.solution(arr)));;
+    // 결과 : [1, 2, 3]
+    Lv01_모의고사 main = new Lv01_모의고사();
+    System.out.println("result = " + Arrays.toString(main.solution(arr)));;
 
   }
 }
