@@ -2,8 +2,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * 모의고사
- * https://school.programmers.co.kr/learn/courses/30/lessons/42840
+ * 모의고사 : https://school.programmers.co.kr/learn/courses/30/lessons/42840
  */
 public class Lv01_모의고사 {
 

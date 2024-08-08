@@ -1,6 +1,9 @@
 import java.util.*;
 import java.io.*;
 
+/**
+ * 실패율 : https://school.programmers.co.kr/learn/courses/30/lessons/42889
+ */
 public class Lv01_KAKAO_실패율 {
 
   public int[] solution(int n, int[] stages) {

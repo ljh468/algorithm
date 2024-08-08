@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+/**
+ * 행렬의 곱셈 : https://school.programmers.co.kr/learn/courses/30/lessons/12949
+ */
 public class Lv02_행렬의곱셈 {
 
   public int[][] solution(int[][] arr1, int[][] arr2) {
