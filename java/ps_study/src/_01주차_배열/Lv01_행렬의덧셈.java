@@ -1,3 +1,5 @@
+package _01주차_배열;
+
 import java.util.Arrays;
 
 /**
@@ -10,8 +12,8 @@ public class Lv01_행렬의덧셈 {
     int col = arr1[0].length;
     int[][] answer = new int[row][col];
 
-    for(int i = 0; i < row; i++) {
-      for(int j = 0; j < col; j++) {
+    for (int i = 0; i < row; i++) {
+      for (int j = 0; j < col; j++) {
         answer[i][j] = arr1[i][j] + arr2[i][j];
       }
     }

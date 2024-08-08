@@ -1,5 +1,11 @@
-import java.util.*;
-import java.io.*;
+package _01주차_배열;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 실패율 : https://school.programmers.co.kr/learn/courses/30/lessons/42889

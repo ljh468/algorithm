@@ -1,9 +1,14 @@
-import java.io.*;
-import java.util.*;
+package _01주차_배열;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class 배열제어하기 {
   /**
-   * 배열제어하기
+   * _01주차_배열.배열제어하기
    * - 정수 배열을 하나 받아, 배열의 중복값을 제거하고 배열 데이터를 내림차순으로 정렬해서 반환하는 solution() 함수를 구현하세요.
    * - 제약조건
    * - 배열의 길이는 2이상 1000이하

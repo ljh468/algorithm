@@ -1,5 +1,10 @@
-import java.io.*;
-import java.util.*;
+package _01주차_배열;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * 방문길이 : https://school.programmers.co.kr/learn/courses/30/lessons/49994
@@ -34,7 +39,7 @@ public class Lv02_방문길이 {
       int nx = x + offset[0];
       int ny = y + offset[1];
       // 3-1. 벗어난 좌표는 무시
-      if(!isValidMove(nx, ny)) continue;
+      if (!isValidMove(nx, ny)) continue;
       // 3-2. A에서 B로 간 경우, B에서 A로 간 경우 모두 추가 (총 경로의 개수는 방향성이 없음)
       answer.add(x + " " + y + " " + nx + " " + ny);
       answer.add(nx + " " + ny + " " + x + " " + y);

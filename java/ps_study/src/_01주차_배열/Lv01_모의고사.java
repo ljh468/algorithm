@@ -1,5 +1,9 @@
-import java.io.*;
-import java.util.*;
+package _01주차_배열;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 /**
  * 모의고사 : https://school.programmers.co.kr/learn/courses/30/lessons/42840
@@ -21,14 +25,14 @@ public class Lv01_모의고사 {
     int maxScore = Math.max(score[0], Math.max(score[1], score[2]));
 
     int size = 0;
-    for(int s : score) {
-      if(maxScore == s) size++;
+    for (int s : score) {
+      if (maxScore == s) size++;
     }
 
     int[] results = new int[size];
     int index = 0;
-    for(int i = 0; i < score.length; i++) {
-      if(score[i] == maxScore) {
+    for (int i = 0; i < score.length; i++) {
+      if (score[i] == maxScore) {
         results[index++] = i + 1;
       }
     }
@@ -43,7 +47,8 @@ public class Lv01_모의고사 {
 
     // 결과 : [1, 2, 3]
     Lv01_모의고사 main = new Lv01_모의고사();
-    System.out.println("result = " + Arrays.toString(main.solution(arr)));;
+    System.out.println("result = " + Arrays.toString(main.solution(arr)));
+    ;
 
   }
 }

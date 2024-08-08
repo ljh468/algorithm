@@ -1,3 +1,5 @@
+package _01주차_배열;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
