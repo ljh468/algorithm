@@ -47,8 +47,10 @@ public class Lv01_가장가까운같은글자 {
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     String str = br.readLine();
-
+    // 입력 예시:
+    // banana
     Lv01_가장가까운같은글자 main = new Lv01_가장가까운같은글자();
     System.out.println("result = " + Arrays.toString(main.solution(str)));
+    // [-1, -1, -1, 2, 2, 2]
   }
 }

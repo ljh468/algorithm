@@ -1,5 +1,10 @@
 package _01주차_배열;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
 public class Lv02_N개의최소공배수 {
 
   // 1. 최대공약수 함수생성 (유클리드 호제법)
@@ -18,9 +23,14 @@ public class Lv02_N개의최소공배수 {
     return answer;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    // 입력예시 :
+    // 2, 6, 8, 14
+    int[] arr = Arrays.stream(br.readLine().split(", ")).mapToInt(Integer::valueOf).toArray();
+
     Lv02_N개의최소공배수 main = new Lv02_N개의최소공배수();
-    int[] arr = {2, 6, 8, 14};
     System.out.println("result = " + main.solution(arr));
+    // 168
   }
 }
