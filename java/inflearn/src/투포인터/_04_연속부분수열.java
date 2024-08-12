@@ -32,19 +32,15 @@ public class _04_연속부분수열 {
     // lt ==> rt 까지의 합이 작으면 rt의 위치는 다음으로 이동
     for (int rt = 0; rt < n; rt++) {
       sum += arr[rt];
-      // 값이 같으면 경우의 수 추가
-      if (sum == m) {
-        answer++;
-      }
 
       // lt ==> rt 까지의 합이 크거나 같으면 lt가 쫓아와야 함
       // 합이 같을 때까지 계속 rt를 쫓아와야 하므로 while문
       while (sum >= m) {
-        sum -= arr[lt];
-        lt++;
+        // 값이 같으면 경우의 수 추가
         if (sum == m) {
           answer++;
         }
+        sum -= arr[lt++];
       }
     }
     return answer;
