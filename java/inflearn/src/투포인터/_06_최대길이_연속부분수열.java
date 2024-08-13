@@ -49,6 +49,9 @@ public class _06_최대길이_연속부분수열 {
   public static void main(String[] args) {
     _06_최대길이_연속부분수열 t = new _06_최대길이_연속부분수열();
     Scanner sc = new Scanner(System.in);
+    // 입력 예시:
+    // 14 2
+    // 1 1 0 0 1 1 0 1 1 0 1 1 0 1
     int n = sc.nextInt();
     int k = sc.nextInt();
 
