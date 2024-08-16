@@ -48,40 +48,40 @@ public class Lv02_괄호회전하기 {
     return stack.isEmpty();
   }
 
-  // 저자의 풀이
+  // 저자의 정답풀이
   public int solution2(String s) {
-    // 1. 괄호 정보를 저장함. 코드를 간결하게 할 수 있음
+
+    // 1. 괄호짝 해시맵에 저장 (닫는괄호를 key값으로)
     HashMap<Character, Character> map = new HashMap<>();
     map.put(')', '(');
     map.put('}', '{');
     map.put(']', '[');
 
-    int n = s.length(); // 원본 문자열의 길이 저장
-    s += s; // 원본 문자열 뒤에 원본 문자열을 이어 붙여서 2번 나오도록 만들어줌
+    int len = s.length(); // 원본 문자열길이 저장
+    s += s; // 문자열을 회전하기위해 문자열을 중복으로 이어붙임
 
+    // 2. 회전된 문자열이 올바른괄호인지 확인
     int answer = 0;
-
-    // 2. 확인할 문자열의 시작 인덱스를 0 부터 n 까지 이동
-    A:for (int i = 0; i < n; i++) {
+    A:
+    for (int i = 0; i < len; i++) {
+      // 2-1. 여는 괄호를 저장할 스택 선언
       ArrayDeque<Character> stack = new ArrayDeque<>();
-
-      // 3. i(시작 위치)부터 원본 문자열의 길이인 n개까지 올바른 괄호 문자열인지 확인
-      for (int j = i; j < i + n; j++) {
-        char c = s.charAt(j);
-        // HashMap 안에 해당 key 가 없다면 열리는 괄호임
-        if (!map.containsKey(c)) {
-          stack.push(c);
+      // 3. i(시작 위치)부터 i + 원본 문자열의 길이(len)까지의 문자열이 올바른 괄호인지 확인
+      for (int j = i; j < i + len; j++) {
+        char ch = s.charAt(j);
+        // 3-1. 해시맵안에 해당 키가 없으면 열린괄호 임
+        if (!map.containsKey(ch)) {
+          stack.push(ch); // 열린괄호는 스택에 추가
         }
+        // 3-2. 닫힌괄호일때, 짝이 맞지않으면 내부for문 종료하고, A 반복문으로 이동
         else {
-          // 4. 짝이 맞지 않으면 내부 for문은 종료하고 for문 A로 이동
-          if(stack.isEmpty() || !stack.pop().equals(map.get(c)))
+          if (stack.isEmpty() || !stack.pop().equals(map.get(ch))) {
             continue A;
+          }
         }
       }
-
-      // 5. 3에서 continue 되지 않았고, 스택이 비어있으면 올바른 괄호 문자열임
-      if (stack.isEmpty())
-        answer++;
+      // 2-2. 문자열을 모두 순회하고, stack이 비어있으면 올바른 괄호이므로 answer 증가
+      if(stack.isEmpty()) answer++;
     }
 
     return answer;
