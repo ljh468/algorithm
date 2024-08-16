@@ -1,17 +1,20 @@
 package _02주차_스택;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Stack;
 
 public class _10진수를_2진수로변환하기 {
 
   public String solution(int decimal) {
     Stack<Integer> stack = new Stack<>();
-    while(decimal > 0) {
+    while (decimal > 0) {
       stack.push(decimal % 2);
       decimal /= 2;
     }
     StringBuilder str = new StringBuilder();
-    while(!stack.isEmpty()) {
+    while (!stack.isEmpty()) {
       str.append(stack.pop());
     }
 

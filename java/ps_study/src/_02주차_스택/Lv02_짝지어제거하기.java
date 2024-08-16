@@ -10,10 +10,10 @@ public class Lv02_짝지어제거하기 {
   public int solution(String s) {
     // 1. 문자열의 문자를 순서대로 스택에 넣어줌
     ArrayDeque<Character> stack = new ArrayDeque<>();
-    for(int i = 0; i < s.length(); i++) {
+    for (int i = 0; i < s.length(); i++) {
       // 1-1. 만약 스택이 비어있으면 문자를 스택에 넣어줌
       char ch = s.charAt(i);
-      if(stack.isEmpty()) {
+      if (stack.isEmpty()) {
         stack.push(ch);
       }
       // 1-2. 스택이 비워져있지 않다면, 짝지어진 문자인지 확인
