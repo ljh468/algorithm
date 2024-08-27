@@ -89,7 +89,7 @@ public class Lv02_기능개발 {
     int[] speeds = {1, 1, 1, 1, 1, 1};
 
     // 출력값 예시
-    // [1, 3, 2]
+    // 1, 3, 2
     System.out.println("result = " + Arrays.toString(main.solution(progresses, speeds)));
   }
 }
