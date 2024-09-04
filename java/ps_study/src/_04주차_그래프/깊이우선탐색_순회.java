@@ -19,7 +19,7 @@ public class 깊이우선탐색_순회 {
   public int[] solution(int[][] graph, int start, int n) {
     // 1. 리스트 배열 초기화
     adj = new ArrayList[n + 1];
-    for(int i = 0; i < adj.length; i++) {
+    for (int i = 0; i < adj.length; i++) {
       adj[i] = new ArrayList<>();
     }
 
@@ -46,7 +46,7 @@ public class 깊이우선탐색_순회 {
 
   // 방법1: 못먹어도 고 (dfs호출하고 방문했는지 확인)
   private void dfs1(int v) {
-    if(visited[v]) return;
+    if (visited[v]) return;
     visited[v] = true;
     answer.add(v);
     for (int there : adj[v]) {
@@ -58,8 +58,8 @@ public class 깊이우선탐색_순회 {
   private void dfs2(int v) {
     visited[v] = true;
     answer.add(v);
-    for(int there : adj[v]) {
-      if(!visited[there]) {
+    for (int there : adj[v]) {
+      if (!visited[there]) {
         dfs2(there);
       }
     }

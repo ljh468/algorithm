@@ -23,6 +23,7 @@ public class BFS {
 
   // 전역 인접 리스트 및 방문 리스트
   static List<List<Integer>> adj = new ArrayList<>();
+
   static boolean[] visited;
 
   // 그래프에 간선을 추가하는 함수
