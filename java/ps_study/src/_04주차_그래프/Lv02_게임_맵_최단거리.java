@@ -19,7 +19,7 @@ public class Lv02_게임_맵_최단거리 {
     queue.addLast(new int[]{0, 0});
     dist[0][0] = 1;
 
-    // 2. 더이상 방문하지 못할때까지 BFS
+    // 2. 큐가 빌때까지 반복 (더이상 방문하지 못할때까지 BFS)
     while (!queue.isEmpty()) {
       int[] cur = queue.poll();
       int y = cur[0];
