@@ -4,79 +4,55 @@ import java.util.*;
 
 public class Lv03_여행경로 {
 
-  // map 구조의 그래프
-  static Map<String, List<String>> map = new HashMap<>();
+  public static List<String> solution(String[][] tickets) {
+    // 경로를 저장할 리스트
+    List<String> result = new ArrayList<>();
 
-  // map 구조만큼 방문을 기록할 배열
-  static Map<String, boolean[]> visited = new HashMap<>();
+    // 항공권 정보를 저장할 맵 (출발도시, 방문이 가능한 도시 리스트)
+    Map<String, PriorityQueue<String>> flightMap = new HashMap<>();
 
-  // 방문 순서를 저장할 배열
-  static List<String> resultOrder = new ArrayList<>();
-
-  public String[] solution(String[][] tickets) {
-    // 1. 티켓을 그래프로 만듬 (인접리스트)
+    // 티켓 정보를 flightMap에 저장
     for (String[] ticket : tickets) {
-
-      List<String> list = map.getOrDefault(ticket[0], new ArrayList<>());
-      list.add(ticket[1]);
-      Collections.sort(list); // 알파벳 순서로 정렬
-      map.put(ticket[0], list);
-    }
-    System.out.println("map = " + map);
-
-    // 2. map의 각 키에 대해 방문 여부 배열을 생성
-    for (String key : map.keySet()) {
-      List<String> dest = map.get(key);
-      visited.put(key, new boolean[dest.size()]); // 목적지 개수만큼 방문 여부 배열 생성
+      String dep = ticket[0];
+      String des = ticket[1];
+      // flightMap에 키값(출발도시)이 없으면 방문이 가능한 도시 리스트(우선순위 큐) 초기화
+      flightMap.computeIfAbsent(dep, k -> new PriorityQueue<>())
+               .add(des);
     }
 
-    for (String key : visited.keySet()) {
-      System.out.println(key + " = " + Arrays.toString(visited.get(key)));
-    }
+    // DFS 실행
+    dfs("ICN", flightMap, result);
 
-    // 3. DFS 시작 (ICN에서 출발)
-    dfs("ICN", tickets.length);
-
-    // 6. 방문순서 리턴
-    return resultOrder.toArray(String[]::new);
+    // 경로가 역순으로 저장되므로, 순서를 반대로 변경
+    Collections.reverse(result);
+    return result;
   }
 
-  // DFS : 현재 도시에서 갈 수 있는 경로를 탐색
-  private boolean dfs(String current, int ticketCount) {
-    resultOrder.add(current); // 방문 순서에 현재 도시 추가
+  private static void dfs(String airport, Map<String, PriorityQueue<String>> flightMap, List<String> result) {
+    // 방문할 수 있는 도착지 리스트(arrivals)를 가져오기
+    PriorityQueue<String> arrivals = flightMap.get(airport);
 
-    // 티켓을 모두 사용한 경우 탐색 종료
-    if (resultOrder.size() == ticketCount + 1) {
-      return true;
+    // 도착지 리스트가 존재하고 비어있지 않으면
+    // 현재 공항에서 갈 수 있는 모든 공항을 사전순으로 방문
+    while (arrivals != null && !arrivals.isEmpty()) {
+      // 사전순으로 우선순위 큐에서 첫 번째 도착지로 DFS 실행
+      String city = arrivals.poll(); // 큐에서 첫 번째 도착지를 가져옴
+      dfs(city, flightMap, result);
     }
 
-    // 현재 도시에서 갈 수 있는 다음 도시들을 탐색
-    if (map.containsKey(current)) {
-      List<String> destinations = map.get(current);
-      boolean[] visitArr = visited.get(current);
-
-      // 인접한 도시 순회
-      for (int i = 0; i < destinations.size(); i++) {
-        if (!visitArr[i]) { // 방문하지 않은 도시라면
-          visitArr[i] = true; // 방문 표시
-
-          // DFS 재귀 (다음 도시를 탐색했으면 true를 리턴)
-          if (dfs(destinations.get(i), ticketCount)) {
-            return true;
-          }
-          visitArr[i] = false; // 되돌아오는 경우 방문 취소
-        }
-      }
-    }
-
-    resultOrder.remove(resultOrder.size() - 1); // 경로에서 마지막 도시 제거 (백트래킹)
-    return false;
+    // 더 이상 방문할 공항이 없으면 현재 공항을 경로에 추가 -> dfs 함수는 "백트래킹" 됨
+    result.add(airport);
   }
 
   public static void main(String[] args) {
-    Lv03_여행경로 main = new Lv03_여행경로();
+    // 테스트 케이스 1
+    String[][] tickets1 = {{"ICN", "JFK"}, {"HND", "IAD"}, {"JFK", "HND"}};
+    System.out.println(solution(tickets1));
 
-    String[][] tickets = {{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL", "SFO"}};
-    System.out.println("result = " + Arrays.toString(main.solution(tickets)));
+    System.out.println();
+
+    // 테스트 케이스 2
+    String[][] tickets2 = {{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL", "SFO"}};
+    System.out.println(solution(tickets2));
   }
 }
