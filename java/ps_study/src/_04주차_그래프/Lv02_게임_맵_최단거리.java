@@ -1,7 +1,6 @@
 package _04주차_그래프;
 
 import java.util.ArrayDeque;
-import java.util.Arrays;
 
 public class Lv02_게임_맵_최단거리 {
 
@@ -15,29 +14,29 @@ public class Lv02_게임_맵_최단거리 {
     int m = maps[0].length;
     int[][] dist = new int[n][m];
 
-    // 1. 시작 노드를 큐에 삽입 & 거리 저장
+    // 2. 시작 노드를 큐에 삽입 & 거리 저장
     ArrayDeque<int[]> queue = new ArrayDeque<>();
     queue.addLast(new int[]{0, 0});
     dist[0][0] = 1;
 
-    // 2. 큐가 빌때까지 반복 (더이상 방문하지 못할때까지 BFS)
+    // 3. 큐가 빌때까지 반복 (더이상 방문하지 못할때까지 BFS)
     while (!queue.isEmpty()) {
       int[] cur = queue.poll();
       int y = cur[0];
       int x = cur[1];
 
-      // 2-1. 인접한 4방향 순회
+      // 3-1. 인접한 4방향 순회
       for (int i = 0; i < 4; i++) {
         int ny = y + dy[i];
         int nx = x + dx[i];
 
-        // 2-2. 맵 밖으로 나가는 경계값 처리
+        // 3-2. 맵 밖으로 나가는 경계값 처리
         if (ny < 0 || nx < 0 || ny >= maps.length || nx >= maps[0].length) continue;
 
-        // 2-4. 벽이 막혀있으면 무시
+        // 3-3. 벽이 막혀있으면 무시
         if (maps[ny][nx] == 0) continue;
 
-        // 2-5. 처음 방문하는 경우 (큐에 추가 & 거리 갱신)
+        // 3-4. 처음 방문하는 경우 (큐에 추가 & 거리 갱신)
         if (dist[ny][nx] == 0) {
           dist[ny][nx] = dist[y][x] + 1; // 방문한 노드 거리 갱신
           queue.addLast(new int[]{ny, nx}); // 방문한 노드 큐에 추가

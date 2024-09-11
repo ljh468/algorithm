@@ -3,7 +3,7 @@ package _04주차_그래프;
 import java.util.ArrayDeque;
 import java.util.Queue;
  // 남서북동
-public class BOJ_2178 {
+public class BOJ_2178_미로탐색 {
 
   // 방문을 기록할 배열 (최단거리 저장)
   static int[][] visited;
@@ -57,7 +57,7 @@ public class BOJ_2178 {
   }
 
   public static void main(String[] args) {
-    BOJ_2178 main = new BOJ_2178();
+    BOJ_2178_미로탐색 main = new BOJ_2178_미로탐색();
     // 입력값 예시
     // 4
     // 6
