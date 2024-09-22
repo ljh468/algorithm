@@ -1,9 +1,7 @@
 package _05주차_백트래킹;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class 긍정황_홍철이의_구걸여행 {
 

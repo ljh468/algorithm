@@ -74,6 +74,5 @@ public class NQueen01 {
     checkNQueens(0, numberOfCases); // 첫 번째 행부터 시작
     System.out.println(numberOfCases.getCount());
   }
-
 }
 

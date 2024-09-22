@@ -1,6 +1,7 @@
 package _05주차_백트래킹;
 
 class NumberOfCases {
+
   int count;
 
   public NumberOfCases() {
@@ -14,4 +15,5 @@ class NumberOfCases {
   public void increase() {
     count++;
   }
+
 }

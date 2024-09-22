@@ -43,5 +43,4 @@ public class FindCombination {
   public static void main(String[] args) {
     findCombinations(0);
   }
-  
 }
