@@ -16,7 +16,6 @@ public class 배열_회전하기 {
     return result;
   }
 
-  // 행렬 출력 함수
   public static void printMatrix(int[][] matrix) {
     for (int[] row : matrix) {
       System.out.println(Arrays.toString(row));
