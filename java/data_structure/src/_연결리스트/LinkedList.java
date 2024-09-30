@@ -39,22 +39,28 @@ public class LinkedList {
       throw new IllegalArgumentException("추가할 범위를 넘어갔습니다.");
     }
     Node newNode = new Node(data);
+    // 맨 앞에 데이터를 삽입하는 경우
     if (index == 0) {
       newNode.setNext(this.head);
       this.head = newNode;
-    } else {
+    }
+    // 중간이나 맨뒤에 데이터를 삽입하는 경우
+    else {
       Node currentNode = this.head;
+      // 맨 앞 노드부터 삽입하려는 인덱스 전까지 이동
       for (int i = 0; i < index - 1; i++) {
         currentNode = currentNode.getNext();
       }
+      // 연결
       newNode.setNext(currentNode.getNext());
       currentNode.setNext(newNode);
     }
-    count++;
+    this.count++;
   }
 
   // 4. insertLast(data)
   public void insertLast(int data) {
+    // count는 맨마지막 인덱스와 같음
     insertAt(this.count, data);
   }
 
@@ -66,6 +72,7 @@ public class LinkedList {
 
     Node currentNode = this.head;
     Node deleteNode = null;
+    // // 맨 앞에 데이터를 삭제하는 경우
     if (index == 0) {
       deleteNode = currentNode;
       this.head = currentNode.getNext();
