@@ -2,18 +2,18 @@ package _연결리스트;
 
 public class LinkedList {
 
-  private Node head;
+  private Node first;
 
   private int count;
 
   public LinkedList() {
-    this.head = null;
+    this.first = null;
     this.count = 0;
   }
 
   // 1. printAll()
   public void printAll() {
-    Node currentNode = this.head;
+    Node currentNode = this.first;
     StringBuilder text = new StringBuilder("[");
     while (currentNode != null) {
       text.append(currentNode.getData());
@@ -29,7 +29,7 @@ public class LinkedList {
 
   // 2. clear()
   public void clear() {
-    this.head = null;
+    this.first = null;
     this.count = 0;
   }
 
@@ -41,12 +41,12 @@ public class LinkedList {
     Node newNode = new Node(data);
     // 맨 앞에 데이터를 삽입하는 경우
     if (index == 0) {
-      newNode.setNext(this.head);
-      this.head = newNode;
+      newNode.setNext(this.first);
+      this.first = newNode;
     }
     // 중간이나 맨뒤에 데이터를 삽입하는 경우
     else {
-      Node currentNode = this.head;
+      Node currentNode = this.first;
       // 맨 앞 노드부터 삽입하려는 인덱스 전까지 이동
       for (int i = 0; i < index - 1; i++) {
         currentNode = currentNode.getNext();
@@ -70,12 +70,12 @@ public class LinkedList {
       throw new IllegalArgumentException("제거할 범위를 넘겼습니다.");
     }
 
-    Node currentNode = this.head;
+    Node currentNode = this.first;
     Node deleteNode = null;
     // // 맨 앞에 데이터를 삭제하는 경우
     if (index == 0) {
       deleteNode = currentNode;
-      this.head = currentNode.getNext();
+      this.first = currentNode.getNext();
     } else {
       for (int i = 0; i < index - 1; i++) {
         currentNode = currentNode.getNext();
@@ -97,7 +97,7 @@ public class LinkedList {
     if (index >= this.count || index < 0) {
       throw new IllegalArgumentException("읽을 수 없는 인덱스입니다.");
     }
-    Node currentNode = this.head;
+    Node currentNode = this.first;
     for (int i = 0; i < index; i++) {
       currentNode = currentNode.getNext();
     }

@@ -27,7 +27,7 @@ public class Queue_DoublyLinkedList {
 
   // front() - 데이터 참조
   public Node front() {
-    return doublyLinkedList.getTail();
+    return doublyLinkedList.getLast();
   }
 
   // isEmpty() - 비었는지 확인
@@ -42,19 +42,19 @@ public class Queue_DoublyLinkedList {
 
   public static void main(String[] args) {
     Queue_DoublyLinkedList queueDoublyLinkedList = new Queue_DoublyLinkedList();
-    System.out.println("===== enqueue() 3번 호출 =====" );
+    System.out.println("===== enqueue() 3번 호출 =====");
     queueDoublyLinkedList.enqueue(1);
     queueDoublyLinkedList.enqueue(2);
     queueDoublyLinkedList.enqueue(3);
     queueDoublyLinkedList.printAll();
     System.out.println("queue.front() = " + queueDoublyLinkedList.front());
 
-    System.out.println("===== dequeue() 1번 호출 =====" );
+    System.out.println("===== dequeue() 1번 호출 =====");
     System.out.println("queue.dequeue() = " + queueDoublyLinkedList.dequeue());
     queueDoublyLinkedList.printAll();
     System.out.println("queue.isEmpty() = " + queueDoublyLinkedList.isEmpty());
 
-    System.out.println("===== dequeue() 2번 호출 =====" );
+    System.out.println("===== dequeue() 2번 호출 =====");
     System.out.println("queue.dequeue() = " + queueDoublyLinkedList.dequeue());
     System.out.println("queue.dequeue() = " + queueDoublyLinkedList.dequeue());
     queueDoublyLinkedList.printAll();

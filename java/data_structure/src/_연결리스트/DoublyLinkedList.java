@@ -2,32 +2,32 @@ package _연결리스트;
 
 public class DoublyLinkedList {
 
-  private Node head;
+  private Node first;
 
-  private Node tail;
+  private Node last;
 
   private int count;
 
   public DoublyLinkedList() {
-    this.head = null;
-    this.tail = null;
+    this.first = null;
+    this.last = null;
     this.count = 0;
   }
 
-  public Node getHead() {
-    return head;
+  public Node getFirst() {
+    return first;
   }
 
-  public void setHead(Node head) {
-    this.head = head;
+  public void setFirst(Node first) {
+    this.first = first;
   }
 
-  public Node getTail() {
-    return tail;
+  public Node getLast() {
+    return last;
   }
 
-  public void setTail(Node tail) {
-    this.tail = tail;
+  public void setLast(Node last) {
+    this.last = last;
   }
 
   public int getCount() {
@@ -40,7 +40,7 @@ public class DoublyLinkedList {
 
   // printAll()
   public void printAll() {
-    Node currentNode = this.head;
+    Node currentNode = this.first;
     StringBuilder text = new StringBuilder("[");
     while (currentNode != null) {
       text.append(currentNode.getData());
@@ -53,10 +53,10 @@ public class DoublyLinkedList {
     System.out.println(text);
   }
 
-  // clear
+  // clear()
   public void clear() {
-    this.head = null;
-    this.tail = null;
+    this.first = null;
+    this.last = null;
     this.count = 0;
   }
 
@@ -67,36 +67,38 @@ public class DoublyLinkedList {
     }
     Node newNode = new Node(data);
 
-    // 1. head에 데이터를 넣을때
+    // 1. first(맨 앞)에 데이터를 넣는 경우
     if (index == 0) {
-      newNode.setNext(this.head);
-      if (this.head != null) {
-        this.head.setPrev(newNode);
+      newNode.setNext(this.first);
+      if (this.first != null) {
+        this.first.setPrev(newNode);
       }
-      this.head = newNode;
+      this.first = newNode;
     }
 
-    // 2. tail에 데이터를 넣을때
+    // 2. last(맨 뒤)에 데이터를 넣는 경우
     else if (index == this.count) {
-      newNode.setPrev(this.tail);
-      if (this.tail != null) {
-        this.tail.setNext(newNode);
+      newNode.setPrev(this.last);
+      if (this.last != null) {
+        this.last.setNext(newNode);
       }
     }
 
     // 3. 중간에 데이터를 넣을때
     else {
-      Node currentNode = this.head;
+      Node currentNode = this.first;
+      // 넣을 인덱스 바로 전까지 이동
       for (int i = 0; i < index - 1; i++) {
         currentNode = currentNode.getNext();
       }
+      // 노드 연결
       newNode.setPrev(currentNode);
       newNode.setNext(currentNode.getNext());
       currentNode.getNext().setPrev(newNode);
       currentNode.setNext(newNode);
     }
     if (newNode.getNext() == null) {
-      this.tail = newNode;
+      this.last = newNode;
     }
     this.count++;
   }
@@ -111,34 +113,35 @@ public class DoublyLinkedList {
     if (index >= this.count || index < 0) {
       throw new IllegalArgumentException("제거할 범위를 넘어섰습니다.");
     }
-    // 1. head의 데이터를 제거할 때
-    Node currentNode = this.head;
+    // 1. first(맨 앞)의 데이터를 제거할 때
+    Node currentNode = this.first;
     Node deleteNode = null;
     if (index == 0) {
       deleteNode = currentNode;
-      // 데이터가 1개 남은 경우
-      if (this.head.getNext() == null) {
-        this.head = null;
-        this.tail = null;
+      // 데이터가 1개 남아있는 경우
+      if (this.first.getNext() == null) {
+        this.first = null;
+        this.last = null;
       }
-      // 데이터가 여러개 남은 경우
+      // 데이터가 여러개 남아있는 경우
       else {
-        this.head = this.head.getNext();
-        this.head.setPrev(null);
+        this.first = this.first.getNext();
+        this.first.setPrev(null);
       }
       this.count--;
       return deleteNode;
     }
-    // 2. tail의 데이터를 제거할 때
+    // 2. last(맨 뒤)의 데이터를 제거할 때
     else if (index == this.count - 1) {
-      deleteNode = this.tail;
-      this.tail.getPrev().setNext(null);
-      this.tail = this.tail.getPrev();
+      deleteNode = this.last;
+      this.last.getPrev().setNext(null);
+      this.last = this.last.getPrev();
       this.count--;
       return deleteNode;
     }
-    // 3. 중간의 데이터를 제거할 때
+    // 3. 중간에 있는 데이터를 제거할 때
     else {
+      // 제거할 인덱스 바로 전 노드까지 이동
       for (int i = 0; i < index - 1; i++) {
         currentNode = currentNode.getNext();
       }
@@ -161,7 +164,7 @@ public class DoublyLinkedList {
     if (index >= this.count || index < 0) {
       throw new IllegalArgumentException("읽을 수 없는 인덱스입니다.");
     }
-    Node currentNode = this.head;
+    Node currentNode = this.first;
     for (int i = 0; i < index; i++) {
       currentNode = currentNode.getNext();
     }
