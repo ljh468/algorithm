@@ -78,6 +78,7 @@ public class DoublyLinkedList {
 
     // 2. last(맨 뒤)에 데이터를 넣는 경우
     else if (index == this.count) {
+      newNode.setNext(null);
       newNode.setPrev(this.last);
       if (this.last != null) {
         this.last.setNext(newNode);
@@ -92,11 +93,13 @@ public class DoublyLinkedList {
         currentNode = currentNode.getNext();
       }
       // 노드 연결
-      newNode.setPrev(currentNode);
       newNode.setNext(currentNode.getNext());
-      currentNode.getNext().setPrev(newNode);
+      newNode.setPrev(currentNode);
       currentNode.setNext(newNode);
+      newNode.getNext().setPrev(newNode);
     }
+
+    // 새로 삽입한 노드가 마지막 노드라면 last를 새로 삽입한 노드로 설정
     if (newNode.getNext() == null) {
       this.last = newNode;
     }
@@ -123,7 +126,7 @@ public class DoublyLinkedList {
         this.first = null;
         this.last = null;
       }
-      // 데이터가 여러개 남아있는 경우
+      // 데이터가 2개 이상 남아있는 경우
       else {
         this.first = this.first.getNext();
         this.first.setPrev(null);
