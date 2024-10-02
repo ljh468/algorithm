@@ -53,7 +53,7 @@ public class HashSet {
     LinkedList<HashData>[] table = hashTable.getTable();
     for (int i = 0; i < table.length; i++) {
       LinkedList<HashData> bucket = table[i];
-      if(!bucket.isEmpty()) {
+      if (!bucket.isEmpty()) {
         for (HashData data : bucket) {
           System.out.println("index: " + i + " data: " + data);
         }
@@ -72,7 +72,7 @@ public class HashSet {
     hashSet.printAll();
     System.out.println("isEmpty: " + hashSet.isEmpty());
 
-    System.out.println("==== 데이터 체크1 ====");
+    System.out.println("==== 데이터1 체크 ====");
     System.out.println("isContain: " + hashSet.isContain(1));
 
     System.out.println("==== 데이터1 제거 ====");
@@ -80,7 +80,7 @@ public class HashSet {
     hashSet.printAll();
     System.out.println("isEmpty: " + hashSet.isEmpty());
 
-    System.out.println("==== 데이터 체크2 ====");
+    System.out.println("==== 데이터1 체크 ====");
     System.out.println("isContain: " + hashSet.isContain(1));
 
     System.out.println("==== clear ====");
@@ -88,5 +88,5 @@ public class HashSet {
     hashSet.printAll();
     System.out.println("isEmpty: " + hashSet.isEmpty());
   }
-  
+
 }
