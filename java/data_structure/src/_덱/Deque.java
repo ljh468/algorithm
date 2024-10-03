@@ -25,6 +25,11 @@ public class Deque {
     }
   }
 
+  // getFirst()
+  public Node getFirst() {
+    return doublyLinkedList.getFirst();
+  }
+
   // addLast(data)
   public void addLast(int data) {
     doublyLinkedList.insertLast(data);
@@ -37,6 +42,11 @@ public class Deque {
     } catch (Exception e) {
       return null;
     }
+  }
+
+  // getLast()
+  public Node getLast() {
+    return doublyLinkedList.getLast();
   }
 
   // isEmpty()
