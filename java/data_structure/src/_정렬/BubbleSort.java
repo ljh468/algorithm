@@ -22,7 +22,7 @@ public class BubbleSort {
     for (int i = 0; i < arr.length - 1; i++) {
       // 횟수 - 정렬이 된 원소의 이전 원소보다 하나 이전의 원소까지 순회
       // 시작점이 (arr.length-i-1)번 임
-      for (int j = 0; j < (arr.length - i - 1); j++) {
+      for (int j = 0; j < (arr.length - i - 2); j++) {
         // 앞의 데이터가 뒤에 데이터보다 더 크다면?
         if (arr[j] > arr[j + 1]) {
           // 데이터 자리변경
@@ -35,7 +35,7 @@ public class BubbleSort {
   }
 
   public static void main(String[] args) {
-    int[] arr = {2, 3, 1, 4};
+    int[] arr = {6, 9, 7, 2, 3, 8, 1, 4};
 
     // 정렬 전 - arr = [2, 3, 1, 4]
     System.out.println("정렬 전 - arr = " + Arrays.toString(arr));
