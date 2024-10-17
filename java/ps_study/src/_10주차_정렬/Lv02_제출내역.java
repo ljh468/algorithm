@@ -7,29 +7,32 @@ public class Lv02_제출내역 {
 
   // 시간복잡도 N^2
   public static int solution1(int[] citations) {
-    int max = 0;
+    int hIndex = 0;
 
-    // 1. 논문 순회 (큰 수부터 검색)
-    // 발표한 논문중 인용된 논문의 수부터 시작
+    // 1. 인용 수가 0보다 큰 논문의 개수를 찾기
+    // 전체 논문 중 하나라도 인용된 논문의 개수를 기준으로 시작점 설정
     int start = 0;
     for (int citation : citations) {
       if (citation > 0) start++;
     }
-    for (int i = start; i > 0; i--) {
-      // 2-1. h번이상 인용된 논문 조건 찾기
-      int h = 0;
+
+    // 2. 가능한 H-index를 큰 수부터 감소시키면서 찾기
+    // H-index 후보 값(candidateH)을 하나씩 줄여가며 조건을 만족하는지 확인
+    for (int candidateH = start; candidateH > 0; candidateH--) {
+      int citationCount = 0;
       for (int citation : citations) {
-        if (citation >= i) h++;
-      }
-      // 2-2. h번 이상의 논문이 h번 인용되었는지 확인
-      if (h >= i) {
-        max = i;
-        return max;
+        if (citation >= candidateH) citationCount++;
       }
 
+      if (citationCount >= candidateH) {
+        hIndex = candidateH;
+        break;  // 최댓값을 찾으면 바로 종료
+      }
     }
-    return max;
+
+    return hIndex;
   }
+
 
   // 시간복잡도 NlogN
   public static int solution2(int[] citations) {
