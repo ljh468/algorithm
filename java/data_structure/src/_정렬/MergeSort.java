@@ -22,17 +22,24 @@ public class MergeSort {
 
   // leftIndex, rightIndex는 재귀를 호출할때 필요한 매개변수
   void mergeSort(int[] arr, int leftIndex, int rightIndex) {
-    // 기저조건
-    if (leftIndex < rightIndex) {
-      // 배열의 가운데 index를 추출
-      int midIndex = (leftIndex + rightIndex) / 2;
-      // 왼쪽 하위 호출
-      mergeSort(arr, leftIndex, midIndex);
-      // 오른쪽 하위 호출
-      mergeSort(arr, midIndex + 1, rightIndex);
-      // 병합
-      merge(arr, leftIndex, midIndex, rightIndex);
+
+    // 기저 조건: 왼쪽 인덱스가 오른쪽 인덱스보다 크거나 같으면 재귀를 종료
+    // 재귀를 이용해 원소가 1개일때까지 분할하기 위함
+    if (leftIndex >= rightIndex) {
+      return;
     }
+
+    // 중간 인덱스를 계산 (배열을 두 부분으로 나누기 위함)
+    int midIndex = (leftIndex + rightIndex) / 2;
+
+    // 왼쪽 하위 배열을 정렬
+    mergeSort(arr, leftIndex, midIndex);
+
+    // 오른쪽 하위 배열을 정렬
+    mergeSort(arr, midIndex + 1, rightIndex);
+
+    // 정렬된 두 하위 배열을 병합
+    merge(arr, leftIndex, midIndex, rightIndex);
   }
 
   void merge(int[] arr, int leftIndex, int midIndex, int rightIndex) {
@@ -40,14 +47,15 @@ public class MergeSort {
     int leftAreaIndex = leftIndex;
     int rightAreaIndex = midIndex + 1;
 
+    // 병합에 사용할 임시 배열 생성
     int[] tempArr = new int[rightIndex + 1];
 
     // 어느 한쪽의 배열의 정렬이 끝날때까지 반복
     while (leftAreaIndex <= midIndex && rightAreaIndex <= rightIndex) {
-      // 왼쪽이 작다면? tempArr에 추가하고, leftAreaIndex + 1, tempAreaIndex + 1 해줌
+      // 왼쪽이 작다면? 임시배열(tempArr)에 추가하고, leftAreaIndex + 1, tempAreaIndex + 1 해줌
       if (arr[leftAreaIndex] <= arr[rightAreaIndex]) {
         tempArr[tempAreaIndex++] = arr[leftAreaIndex++];
-      } else { // 오른쪽이 작다면? tempArr에 추가하고, rightAreaIndex + 1, tempAreaIndex + 1
+      } else { // 오른쪽이 작다면? 임시배열(tempArr)에 추가하고, rightAreaIndex + 1, tempAreaIndex + 1
         tempArr[tempAreaIndex++] = arr[rightAreaIndex++];
       }
     }
