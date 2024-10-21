@@ -24,7 +24,7 @@ public class MergeSort {
   void mergeSort(int[] arr, int leftIndex, int rightIndex) {
 
     // 기저 조건: 왼쪽 인덱스가 오른쪽 인덱스보다 크거나 같으면 재귀를 종료
-    // 재귀를 이용해 원소가 1개일때까지 분할하기 위함
+    // 재귀를 이용해 원소가 1개일때까지 분할하기 위함 (1개로 분할하면 left와 right는 같아짐)
     if (leftIndex >= rightIndex) {
       return;
     }
@@ -44,8 +44,8 @@ public class MergeSort {
 
   void merge(int[] arr, int leftIndex, int midIndex, int rightIndex) {
     int tempAreaIndex = leftIndex;
-    int leftAreaIndex = leftIndex;
-    int rightAreaIndex = midIndex + 1;
+    int leftAreaIndex = leftIndex; // 왼쪽 배열의 처음
+    int rightAreaIndex = midIndex + 1; // 오른쪽 배열의 처음
 
     // 병합에 사용할 임시 배열 생성
     int[] tempArr = new int[rightIndex + 1];
@@ -60,17 +60,16 @@ public class MergeSort {
       }
     }
 
-    // 왼쪽의 배열이 모두 정렬 되었으면, 나머지 정렬되지 않은 오른쪽 배열의 원소를 추가해줌
-    if (leftAreaIndex > midIndex) {
-      for (int i = rightAreaIndex; i <= rightIndex; i++) {
-        tempArr[tempAreaIndex++] = arr[i];
-      }
-    } else { // 오른쪽 배열이 모두 정렬되었으면, 나머지 정렬되지 않은 왼쪽 배열의 원소를 추가해줌
-      for (int i = leftAreaIndex; i <= midIndex; i++) {
-        tempArr[tempAreaIndex++] = arr[i];
-      }
+    // 왼쪽 배열의 원소가 남아있으면, 나머지 원소를 임시 배열에 추가해줌
+    while (leftAreaIndex <= midIndex) {
+      tempArr[tempAreaIndex++] = arr[leftAreaIndex++];
     }
 
+    // 오른쪽 배열의 원소가 남아있으면, 나머지 원소를 임시 배열에 추가해줌
+    while (rightAreaIndex <= rightIndex) {
+      tempArr[tempAreaIndex++] = arr[rightAreaIndex++];
+    }
+    
     // 정렬해준 tempArr를 원본 arr에 채워줌 (leftIndex -> rightIndex까지)
     for (int i = leftIndex; i <= rightIndex; i++) {
       arr[i] = tempArr[i];
