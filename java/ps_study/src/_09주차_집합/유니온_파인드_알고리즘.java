@@ -14,11 +14,10 @@ public class 유니온_파인드_알고리즘 {
     }
 
     // x의 부모를 찾아서 parent[x]에 저장 (경로 압축)
-    parent[x] = find(parent[x]);
-    return parent[x];
+    return parent[x] = find(parent[x]);
   }
 
-  static void union(int x, int y) {
+  private static void union(int x, int y) {
     int root1 = find(x);
     int root2 = find(y);
     // root1을 기준으로 root2를 합침
