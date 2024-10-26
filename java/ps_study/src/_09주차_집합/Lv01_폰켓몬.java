@@ -2,6 +2,7 @@ package _09주차_집합;
 
 import java.util.HashSet;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/1845
 public class Lv01_폰켓몬 {
 
   public static int solution(int[] nums) {

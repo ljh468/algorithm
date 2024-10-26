@@ -7,7 +7,10 @@ public class 유니온_파인드_알고리즘 {
 
   static int[] parent;
 
+  static int count = 0;
+
   private static int find(int x) {
+    count++;
     // 만약 x의 부모노드가 자기자신이라면 루트노드
     if (parent[x] == x) {
       return x;
@@ -63,6 +66,5 @@ public class 유니온_파인드_알고리즘 {
 
     Boolean[] result = solution(k, operations);
     System.out.println("result = " + Arrays.toString(result));
-
   }
 }

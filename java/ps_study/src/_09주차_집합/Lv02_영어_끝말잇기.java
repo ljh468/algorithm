@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/12981
 public class Lv02_영어_끝말잇기 {
 
   public static void main(String[] args) {
@@ -30,7 +31,7 @@ public class Lv02_영어_끝말잇기 {
     for (int i = 1; i <= n; i++) {
       map.put(i, 0);
       q.addLast(i);
-    } // n이 2이라면 1:0, 2:0
+    }
 
     // 2. 끝말잇기 중복을 확인하기 위한 set
     HashSet<String> set = new HashSet<>();

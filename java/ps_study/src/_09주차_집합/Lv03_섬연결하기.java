@@ -3,6 +3,7 @@ package _09주차_집합;
 import java.util.Arrays;
 import java.util.Comparator;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/42861
 public class Lv03_섬연결하기 {
 
   static int[] parent;
