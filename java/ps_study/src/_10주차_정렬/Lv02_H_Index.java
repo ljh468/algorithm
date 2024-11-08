@@ -3,14 +3,14 @@ package _10주차_정렬;
 import java.util.Arrays;
 
 // https://school.programmers.co.kr/learn/courses/30/lessons/42747
-public class Lv02_제출내역 {
+public class Lv02_H_Index {
 
   // 시간복잡도 N^2
   public static int solution1(int[] citations) {
     int hIndex = 0;
 
-    // 1. 인용 수가 0보다 큰 논문의 개수를 찾기
-    // 전체 논문 중 하나라도 인용된 논문의 개수를 기준으로 시작점 설정
+    // 1. 논문 순회 (큰 수부터 검색)
+    // 발표한 논문중 인용된 논문이 하나 이상인 횟수를 기준점으로 잡아서 하나씩 줄여가면서 조건을 찾기
     int start = 0;
     for (int citation : citations) {
       if (citation > 0) start++;
@@ -20,10 +20,11 @@ public class Lv02_제출내역 {
     // H-index 후보 값(candidateH)을 하나씩 줄여가며 조건을 만족하는지 확인
     for (int candidateH = start; candidateH > 0; candidateH--) {
       int citationCount = 0;
+      // 각 논문이 i 번 이상 인용되었는지 확인
       for (int citation : citations) {
         if (citation >= candidateH) citationCount++;
       }
-
+      // 인용된 논문의 개수(h)가 i번 이상인 경우, H-index로 설정하고 종료
       if (citationCount >= candidateH) {
         hIndex = candidateH;
         break;  // 최댓값을 찾으면 바로 종료
