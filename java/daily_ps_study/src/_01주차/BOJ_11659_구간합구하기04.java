@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+// https://www.acmicpc.net/problem/11659
 public class BOJ_11659_구간합구하기04 {
 
   public static void main(String[] args) throws IOException {
