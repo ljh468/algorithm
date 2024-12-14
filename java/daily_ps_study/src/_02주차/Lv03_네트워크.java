@@ -5,10 +5,7 @@ public class Lv03_네트워크 {
 
   private static boolean[] visited;
 
-  private static int[][] computerArr;
-
   public static int solution(int n, int[][] computers) {
-    computerArr = computers; // 컴퓨터 연결 정보를 저장할 배열
     visited = new boolean[n]; // 컴퓨터가 네트워크로 연결되는지를 기록할 배열
     int count = 0; // 네트워크 수
 
@@ -16,7 +13,7 @@ public class Lv03_네트워크 {
     for (int i = 0; i < computers.length; i++) {
       // 1-1. 연결되지 않은 네트워크라면 DFS 탐색
       if (!visited[i]) {
-        dfs(i);
+        dfs(computers, i);
         // 1-2. 탐색이 끝나면 네트워크 1증가
         count++;
       }
@@ -24,14 +21,14 @@ public class Lv03_네트워크 {
     return count;
   }
 
-  private static void dfs(int n) {
+  private static void dfs(int[][] computers, int n) {
     // 1. 방문처리 하고
     visited[n] = true;
     // 2. 인접한 노드 순회
-    for (int i = 0; i < computerArr.length; i++) {
+    for (int i = 0; i < computers.length; i++) {
       // 2-1. 연결되어 있는데, 방문하지 않은 노드라면 방문하러 감
-      if (computerArr[n][i] == 1 && !visited[i]) {
-        dfs(i);
+      if (computers[n][i] == 1 && !visited[i]) {
+        dfs(computers, i);
       }
     }
   }
@@ -54,8 +51,5 @@ public class Lv03_네트워크 {
 
     int result2 = solution(n, computers2);
     System.out.println("result2 = " + result2);
-
-
-
   }
 }

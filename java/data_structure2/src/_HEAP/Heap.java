@@ -67,7 +67,6 @@ public class Heap {
       }
     }
 
-
   }
 
   boolean isBigPriority(int first, int second) {
@@ -181,8 +180,8 @@ public class Heap {
       // 두 자식노드 중 더 높은 우선순위의 자식노드를 구함
       BinaryTree higherChild = getHigherPriorityChild(current.getLeftSubTree(), current.getRightSubTree());
       // 자식노드가 없다면 do-while 종료
-      if (higherChild == null) break;
-        // 우선순위가 더 높은 자식과 현재노드를 비교해서 자식노드가 우선순위가 더 높다면 자리를 바꿈
+      if (higherChild == null) {break;}
+      // 우선순위가 더 높은 자식과 현재노드를 비교해서 자식노드가 우선순위가 더 높다면 자리를 바꿈
       else if (this.isBigPriority(current.getData(), higherChild.getData()) == false) {
         int tempData2 = current.getData();
         current.setData(higherChild.getData());
@@ -190,7 +189,7 @@ public class Heap {
         current = higherChild; // 현재노드를 아래로 이동
       }
       // 현재노드의 우선순위가 더 높다면 do-while 종료
-      else break;
+      else {break;}
 
       // 자식노드가 없을때 까지 반복
     } while (current.getLeftSubTree() != null || current.getRightSubTree() != null);
@@ -211,7 +210,7 @@ public class Heap {
       while (current.getParentTree().getParentTree() != null) {
         current = current.getParentTree();
         firstLeftSibling = this.getLeftSibling(current);
-        if (firstLeftSibling != null) break;
+        if (firstLeftSibling != null) {break;}
       }
 
       // 1-1. 부모노드 중에 왼쪽 형제노드가 존재하는 경우
