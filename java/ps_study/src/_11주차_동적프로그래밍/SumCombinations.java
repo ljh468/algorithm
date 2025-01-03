@@ -1,4 +1,4 @@
-package _연습문제;
+package _11주차_동적프로그래밍;
 
 import java.io.*;
 import java.util.StringTokenizer;
