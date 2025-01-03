@@ -1,34 +1,41 @@
 package _02주차_스택;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.HashMap;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/12909
 public class Lv02_올바른괄호 {
 
-  boolean solution(String s) {
-    Stack<Character> stack = new Stack<>();
-    // 1. 문자열을 순회
+  public static void main(String[] args) {
+    String s1 = "[{()}()]";
+    System.out.println("result1 = " + solution(s1));
+    String s2 = "({{}))(";
+    System.out.println("result2 = " + solution(s2));
+  }
+
+  public static boolean solution(String s) {
+    HashMap<Character, Character> map = new HashMap<>();
+    map.put('(', ')');
+    map.put('{', '}');
+    map.put('[', ']');
+
+    ArrayDeque<Character> stack = new ArrayDeque<>();
     for (char ch : s.toCharArray()) {
-      // 1-1. 만약 여는괄호면 stack에 추가
-      if (ch == '(') {
-        stack.push(ch);
+      // 1. "("이면 스택에 넣고
+      if (map.containsKey(ch)) {
+        stack.addLast(ch);
       }
-      // 1-2. 만약 닫는괄호면 stack에 여는괄호가 있는지 확인
+      // 2. ")"이면 스택에서 뺀다, 만약 스택이 비어있으면 false
       else {
-        // 스택이 비어있거나, 여는괄호가 없다면 올바르지않은 괄호
-        if (stack.isEmpty() || stack.pop() == ')') {
+        if (stack.isEmpty()) {
+          return false;
+        }
+        if (ch != map.get(stack.pollLast())) {
           return false;
         }
       }
     }
-    // 2. 문자열을 다돌았는데, stack에 데이터가 남아있으면 안됨 (비어있으면 올바른괄호)
+    // 3. 문자열을 모두 순회했는데, 스택이 남아있어도 false
     return stack.isEmpty();
-  }
-
-  public static void main(String[] args) {
-    Lv02_올바른괄호 main = new Lv02_올바른괄호();
-    String str1 = "(())()";
-    String str2 = ")()(";
-    System.out.println("result1 = " + main.solution(str1));
-    System.out.println("result1 = " + main.solution(str2));
   }
 }

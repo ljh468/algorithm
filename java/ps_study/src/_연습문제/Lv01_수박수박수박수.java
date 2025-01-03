@@ -1,4 +1,4 @@
-package Lv01_연습문제;
+package _연습문제;
 
 import java.io.BufferedReader;
 import java.io.IOException;
