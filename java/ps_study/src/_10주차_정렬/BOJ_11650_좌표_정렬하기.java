@@ -10,22 +10,22 @@ import java.util.StringTokenizer;
 public class BOJ_11650_좌표_정렬하기 {
 
   public static void main(String[] args) throws IOException {
-    // 입력예시
-    // 5
-    // 3 4
-    // 1 1
-    // 1 -1
-    // 2 2
-    // 3 3
+// 입력예시
+// 5
+// 3 4
+// 1 1
+// 1 -1
+// 2 2
+// 3 3
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int n = Integer.parseInt(br.readLine());
 
     // 좌표를 x좌표가 증가하는 순으로, x좌표가 같으면 y좌표가 증가하는 순서로 정렬한 다음 출력하는 프로그램을 작성
-    Main.Point[] points = new Main.Point[n];
+    Point[] points = new Point[n];
     StringTokenizer st;
     for (int i = 0; i < n; i++) {
       st = new StringTokenizer(br.readLine());
-      points[i] = new Main.Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+      points[i] = new Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
     }
 
     // 레퍼런스 타입은 Tim Sort로 동작하고, Stable Sort (직전 순서 보장) 임.
