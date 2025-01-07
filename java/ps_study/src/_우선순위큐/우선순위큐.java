@@ -1,4 +1,4 @@
-package _10주차_정렬;
+package _우선순위큐;
 
 import java.util.Collections;
 import java.util.Comparator;
