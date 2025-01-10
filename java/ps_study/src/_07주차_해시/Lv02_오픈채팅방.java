@@ -14,10 +14,11 @@ public class Lv02_오픈채팅방 {
         "Change uid4567 Ryan"
     };
 
-    System.out.println("result = " + Arrays.toString(solution(record)));
+    System.out.println("result1 = " + Arrays.toString(solution1(record)));
+    System.out.println("result2 = " + Arrays.toString(solution2(record)));
   }
 
-  public static String[] solution(String[] record) {
+  public static String[] solution1(String[] record) {
     // 1. 입장, 퇴장 문자열 맵 초기화, uid, nickname을 저장할 맵 선언
     Map<String, String> actionMap =  Map.of("Enter", "님이 들어왔습니다.",
                                             "Leave", "님이 나갔습니다.");
