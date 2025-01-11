@@ -1,8 +1,8 @@
-package 이분탐색;
+package 이진탐색;
 
 // https://school.programmers.co.kr/learn/courses/30/lessons/64062
 // 이분탐색 풀이법
-public class Lv03_징검다리_건너기_이분탐색 {
+public class Lv03_징검다리_건너기_이진탐색 {
 
   public static void main(String[] args) {
     int[] stones = {2, 4, 5, 3, 2, 1, 4, 2, 5, 1};
@@ -36,15 +36,15 @@ public class Lv03_징검다리_건너기_이분탐색 {
 
     for (int stone : stones) {
       if (stone - people < 0) {
-        skip++; // 밟을 수 없는 디딤돌
+        skip++; // 연속으로 밟을 수 없는 디딤돌 증가
         if (skip >= k) {
-          return false; // 건널 수 없는 경우
+          return false; // 건널 수 없는 경우 즉시 반환
         }
       } else {
-        skip = 0; // 밟을 수 있는 디딤돌이면 초기화
+        skip = 0; // 밟을 수 있는 경우 skip 초기화
       }
     }
 
-    return true; // 건널 수 있는 경우
+    return true; // 모든 디딤돌을 건널 수 있음
   }
 }
